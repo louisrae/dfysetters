@@ -10,8 +10,8 @@ import ezgmail
 
 
 ezgmail.init(
-    tokenFile="/Users/louisrae/Documents/dev/projects/team_onboarding/credentials/token.json",
-    credentialsFile="/Users/louisrae/Documents/dev/projects/team_onboarding/credentials/credentials.json",
+    tokenFile="/Users/louisrae/Documents/code (parent)/credentials/token.json",
+    credentialsFile="/Users/louisrae/Documents/code (parent)/credentials/credentials.json",
 )
 
 
@@ -59,8 +59,12 @@ def get_slack_channels():
         pass
     elif to_invite == "y":
         for channel in channels:
-            client.conversations_invite(channel=channel, users=user_id)
-            print(f"{user_id} added to {channel}")
+            try:
+                client.conversations_invite(channel=channel, users=user_id)
+                print(f"{user_id} added to {channel}")
+            except Exception as e:
+                print()
+                print(f"{user_id} could not be added to {channel}")
 
 
 main()

@@ -18,12 +18,13 @@ def get_query():
         "What is the start date of the person you want to add? (YYYY-MM-DD) "
     )
     pod = input("What pod is this person in? ")
+    personal_email = input("What is this person's personal email address? ")
 
     query = f"""
     INSERT INTO team(full_name,company_role,company_email,pay_per_client,
-    start_date,active,pod) VALUES('{full_name}', '{role}','{email}','{pay}',
+    start_date,active,pod,personal_email) VALUES('{full_name}', '{role}','{email}','{pay}',
     '{start_date}',
-    '1','{pod}') """
+    '1','{pod}','{personal_email}') """
 
     return query
 

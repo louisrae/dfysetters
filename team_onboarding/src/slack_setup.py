@@ -7,7 +7,7 @@ sys.path.insert(0, "/Users/louisrae/Documents/dev/projects/team_onboarding/src")
 
 
 from slack import WebClient
-from constants import *
+from src.constants import *
 
 client = WebClient(token=TOKEN)
 

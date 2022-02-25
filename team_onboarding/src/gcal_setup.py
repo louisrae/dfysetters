@@ -7,8 +7,8 @@ from gcsa.event import Event
 
 calendar = GoogleCalendar(
     "louisrae@settersandspecialists.com",
-    credentials_path="/Users/louisrae/Documents/dev/projects/team_onboarding/credentials/credentials.json",
-    token_path="/Users/louisrae/Documents/dev/projects/team_onboarding/credentials/token.pickle",
+    credentials_path="/Users/louisrae/Documents/code (parent)/dfysetters/team_onboarding/credentialsc/redentials.json",
+    token_path="/Users/louisrae/Documents/code (parent)/dfysetters/team_onboarding/credentials/token.pickle",
 )
 
 
