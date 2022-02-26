@@ -1,6 +1,3 @@
-import sys
-
-sys.path.insert(0, "/Users/louisrae/Documents/dev/projects/team_onboarding")
 from src.add_team_member_to_db import *
 from src.gcal_setup import *
 from src.common import *
