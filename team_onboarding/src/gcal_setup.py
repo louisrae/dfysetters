@@ -24,7 +24,8 @@ def set_follow_up(df):
     end = start + timedelta(1)
     event = Event(f"End of trial for {name}", start=start, end=end)
     calendar.add_event(event)
-    print(f"{name} added to calendar for {start}")
+
+    return f"{name} added to calendar for {start}"
 
 
 def get_events_to_inv(df):

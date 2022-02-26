@@ -2,10 +2,11 @@
 invited to"""
 
 import sys
+import os
 
-sys.path.insert(0, "/Users/louisrae/Documents/dev/projects/team_onboarding/src")
-
-
+sys.path.append(
+    f"/Users/{os.environ['USER']}/Documents/code (parent)/dfysetters/team_onboarding"
+)
 from slack import WebClient
 from src.constants import *
 
