@@ -7,7 +7,7 @@ sys.path.append(str(Path(__file__).parents[1]) + "/helper")
 from datetime import timedelta
 from sqlalchemy import create_engine
 import pandas as pd
-from constants import *
+from constants import DATABASE_URI
 
 
 def read_dataframe_of_roles():

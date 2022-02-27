@@ -2,7 +2,18 @@
 invited to"""
 import src_path
 from slack import WebClient
-from helper.constants import *
+from helper.constants import (
+    GIRLS_ID,
+    PURPLE_ID,
+    SCRUMTEAM_ID,
+    SFU_ID,
+    SPECIALISTS_ID,
+    SETTERS_ID,
+    LEVEL_5_ID,
+    SETTERS_TEAM_ID,
+    CLIENT_REPORTS_ID,
+    SLACK_TOKEN,
+)
 
 
 client = WebClient(token=SLACK_TOKEN)

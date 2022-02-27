@@ -6,7 +6,6 @@ from datetime import timedelta
 from gcsa.google_calendar import GoogleCalendar
 from gcsa.event import Event
 from helper.constants import GCAL_CREDENTIALS_PATH, GCAL_TOKEN_PICKLE_PATH
-from helper.common import *
 
 
 def set_follow_up(df):

@@ -2,8 +2,8 @@
 """
 import src_path
 import pandas as pd
-from helper.constants import *
-from helper.common import *
+from helper.constants import DAILY_KPIS_URL
+from helper.common import change_date_column_in_df_to_datetime
 
 
 class SSBTotals:
