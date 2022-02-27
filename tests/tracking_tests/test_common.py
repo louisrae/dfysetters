@@ -1,5 +1,5 @@
 import src_path
-from helper.common import *
+from helper.common import get_day_list
 import datetime
 
 

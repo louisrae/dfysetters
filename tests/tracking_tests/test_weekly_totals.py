@@ -1,7 +1,7 @@
 import src_path
 from tracking.weekly_totals import SSBTotals
-from helper.constants import *
-from helper.common import *
+from helper.constants import GSPREAD_CREDENTIALS, AUTHORIZED_USER
+from helper.common import get_day_list
 import gspread
 from datetime import date
 

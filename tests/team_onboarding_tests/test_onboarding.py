@@ -1,10 +1,9 @@
 import src_path
 from helper.common import generate_variables
-from team_onboarding.add_team_member_to_db import *
-from team_onboarding.add_team_member_to_db import *
-from team_onboarding.slack_setup import *
-from team_onboarding.welcome_email import *
-from team_onboarding.gcal_setup import *
+from team_onboarding.add_team_member_to_db import get_query
+from team_onboarding.slack_setup import slack_data_setup
+from team_onboarding.welcome_email import email_setup
+from team_onboarding.gcal_setup import get_events_to_inv, set_follow_up
 
 df = generate_variables()  # Use Tylee Groll As Name
 

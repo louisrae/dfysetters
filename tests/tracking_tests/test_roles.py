@@ -1,8 +1,15 @@
 import src_path
 import pytest
-from tracking.roles import *
-from helper.constants import *
-from helper.common import *
+from tracking.roles import (
+    Roles,
+    Person,
+    SnrSpecialist,
+    JnrSpecialist,
+    Setter,
+    Operations,
+    PodLead,
+)
+from helper.common import read_dataframe_of_roles
 
 
 class TestRoles:
