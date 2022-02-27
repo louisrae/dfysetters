@@ -1,2 +1,5 @@
-.DS_Store
-.pytest_cache
+*.DS_Store
+*.pytest_cache
+*credentials
+*__pycache__
+*.vscode

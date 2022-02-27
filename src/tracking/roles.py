@@ -1,7 +1,8 @@
 """This module takes in the csv of team member information and creates objects 
 for each person to use for other functions
 """
-from common import read_dataframe_of_roles
+import src_path
+from helper.common import read_dataframe_of_roles
 
 
 class Person:

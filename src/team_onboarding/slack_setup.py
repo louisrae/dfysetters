@@ -1,8 +1,9 @@
 """ This module will get the channels that the new team member needs to be 
 invited to"""
-
+import src_path
 from slack import WebClient
-from constants import *
+from helper.constants import *
+
 
 client = WebClient(token=SLACK_TOKEN)
 

@@ -1,13 +1,9 @@
-import sys
-import pathlib
-
-sys.path.append(str(pathlib.Path(__file__).parent.parent.resolve()) + "/src")
-
-from add_team_member_to_db import *
-from gcal_setup import *
-from common import *
-from slack_setup import *
-from welcome_email import *
+import src_path
+from team_onboarding.add_team_member_to_db import *
+from team_onboarding.add_team_member_to_db import *
+from team_onboarding.slack_setup import *
+from team_onboarding.welcome_email import *
+from team_onboarding.gcal_setup import *
 
 df = generate_variables()  # Use Tylee Groll As Name
 

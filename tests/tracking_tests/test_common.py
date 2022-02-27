@@ -1,8 +1,5 @@
-import sys
-import pathlib
-
-sys.path.append(str(pathlib.Path(__file__).parent.parent.resolve()) + "/src")
-from common import *
+import src_path
+from helper.common import *
 import datetime
 
 

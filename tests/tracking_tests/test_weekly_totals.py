@@ -1,11 +1,7 @@
-import sys
-import pathlib
-
-sys.path.append(str(pathlib.Path(__file__).parent.parent.resolve()) + "/src")
-
-from weekly_totals import SSBTotals
-from constants import *
-from common import *
+import src_path
+from tracking.weekly_totals import SSBTotals
+from helper.constants import *
+from helper.common import *
 import gspread
 from datetime import date
 

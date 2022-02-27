@@ -1,11 +1,12 @@
 """This module works with Google Calendar to set follow up events and invite 
 new team members to the relevant meetings"""
 
+import src_path
 from datetime import timedelta
 from gcsa.google_calendar import GoogleCalendar
 from gcsa.event import Event
-
-from constants import *
+from helper.constants import GCAL_CREDENTIALS_PATH, GCAL_TOKEN_PICKLE_PATH
+from helper.common import *
 
 
 def set_follow_up(df):

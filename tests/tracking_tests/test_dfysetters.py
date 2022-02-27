@@ -1,14 +1,10 @@
-import sys
-import pathlib
-
-sys.path.append(str(pathlib.Path(__file__).parent.parent.resolve()) + "/src")
-
+import src_path
 import gspread
 import pytest
 import datetime
-from facebook_tracking import *
-from constants import *
-from roles import *
+from tracking.facebook_tracking import *
+from helper.constants import *
+from tracking.roles import *
 
 
 class TestUnansweredMessages:

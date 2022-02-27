@@ -1,12 +1,8 @@
-import sys
-import pathlib
-
-sys.path.append(str(pathlib.Path(__file__).parent.parent.resolve()) + "/src")
-
+import src_path
 import pytest
-from roles import *
-from constants import *
-from common import read_dataframe_of_roles
+from tracking.roles import *
+from helper.constants import *
+from helper.common import *
 
 
 class TestRoles:

@@ -1,9 +1,13 @@
 """This module houses common methods used across the codebase"""
+import sys
+from pathlib import Path
 
-from constants import *
-import pandas as pd
-from sqlalchemy import create_engine
+sys.path.append(str(Path(__file__).parents[1]) + "/helper")
+
 from datetime import timedelta
+from sqlalchemy import create_engine
+import pandas as pd
+from constants import *
 
 
 def read_dataframe_of_roles():
@@ -21,7 +25,7 @@ def read_dataframe_of_roles():
 
 def change_date_column_in_df_to_datetime(sheet):
     """Takes in a sheet and returns a dataframe of that sheet with a datetime
-    columm
+    column
 
     Args:
         sheet (gspread.worksheet): Google sheet with one Date Column as string
@@ -53,3 +57,14 @@ def get_day_list(start_date, end_date):
         daylist.append(day.strftime("%Y-%m-%d"))
 
     return daylist
+
+
+def generate_variables():
+    engine = create_engine(
+        "postgresql://postgres:qweasdzxcQ101@localhost:5432/general"
+    )
+    name = input("What is the name of the person you are searching for? ")
+    myQuery = f"SELECT * FROM team WHERE full_name = '{name}'"
+    df = pd.read_sql_query(myQuery, engine)
+
+    return df

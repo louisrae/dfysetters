@@ -1,16 +1,9 @@
 """This module is used to get the WTD and MTD totals for all relevent clients to see where issues lay
 """
+import src_path
 import pandas as pd
-from constants import *
-import logging
-from common import *
-
-
-logging.basicConfig(
-    filename="/Users/louisrae/Documents/code (parent)/logs/weekly_totals.log",
-    level=logging.INFO,
-    format="%(asctime)s, %(levelname)s:%(message)s",
-)
+from helper.constants import *
+from helper.common import *
 
 
 class SSBTotals:
@@ -60,7 +53,7 @@ class SSBTotals:
                 totals.update(self.getSSForEachDayInDayList(sheet, day_list))
 
             except Exception as e:
-                logging.info(f"{sheet.title}: {e}")
+                print(f"{sheet.title}: {e}")
 
         totals_df = pd.DataFrame(totals.items()).sort_values(by=1)
 
