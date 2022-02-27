@@ -1,16 +1,10 @@
 """ This module will get the channels that the new team member needs to be 
 invited to"""
 
-import sys
-import os
-
-sys.path.append(
-    f"/Users/{os.environ['USER']}/Documents/code (parent)/dfysetters/team_onboarding"
-)
 from slack import WebClient
-from src.constants import *
+from constants import *
 
-client = WebClient(token=TOKEN)
+client = WebClient(token=SLACK_TOKEN)
 
 
 def slack_data_setup(df):

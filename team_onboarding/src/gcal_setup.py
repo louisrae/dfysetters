@@ -5,6 +5,8 @@ from datetime import timedelta
 from gcsa.google_calendar import GoogleCalendar
 from gcsa.event import Event
 
+from constants import *
+
 
 def set_follow_up(df):
     """Will put a follow up event on louisrae@settersandspecialists.com calendar
@@ -15,8 +17,8 @@ def set_follow_up(df):
 
     calendar = GoogleCalendar(
         "louisrae@settersandspecialists.com",
-        credentials_path="/Users/louisrae/Documents/code (parent)/dfysetters/team_onboarding/credentials/credentials.json",
-        token_path="/Users/louisrae/Documents/code (parent)/dfysetters/team_onboarding/credentials/token.pickle",
+        credentials_path=GCAL_CREDENTIALS_PATH,
+        token_path=GCAL_TOKEN_PICKLE_PATH,
     )
 
     name = df["full_name"][0]

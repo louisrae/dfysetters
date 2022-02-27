@@ -1,18 +1,13 @@
 import sys
-import os
+import pathlib
 
-import pytest
+sys.path.append(str(pathlib.Path(__file__).parent.parent.resolve()) + "/src")
 
-sys.path.append(
-    f"/Users/{os.environ['USER']}/Documents/code (parent)/dfysetters/team_onboarding"
-)
-
-from src.add_team_member_to_db import *
-from src.gcal_setup import *
-from src.common import *
-from src.slack_setup import *
-from src.welcome_email import *
-
+from add_team_member_to_db import *
+from gcal_setup import *
+from common import *
+from slack_setup import *
+from welcome_email import *
 
 df = generate_variables()  # Use Tylee Groll As Name
 

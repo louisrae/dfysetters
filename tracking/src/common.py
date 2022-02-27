@@ -1,10 +1,5 @@
 """This module houses common methods used across the codebase"""
 
-import sys
-import os
-
-
-sys.path.append(f"/Users/{os.environ['USER']}/Documents/tracking/src")
 from constants import *
 import pandas as pd
 from sqlalchemy import create_engine

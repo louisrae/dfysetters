@@ -1,7 +1,8 @@
 import sys
+import pathlib
 
-sys.path.append("/Users/louisrae/Documents/tracking")
-from src.common import *
+sys.path.append(str(pathlib.Path(__file__).parent.parent.resolve()) + "/src")
+from common import *
 import datetime
 
 

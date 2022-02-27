@@ -1,11 +1,12 @@
 import sys
+import pathlib
 
-sys.path.append("/Users/louisrae/Documents/tracking")
+sys.path.append(str(pathlib.Path(__file__).parent.parent.resolve()) + "/src")
 
 import pytest
-from src.roles import *
-from src.constants import *
-from src.common import read_dataframe_of_roles
+from roles import *
+from constants import *
+from common import read_dataframe_of_roles
 
 
 class TestRoles:

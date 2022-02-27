@@ -1,10 +1,11 @@
 import sys
+import pathlib
 
-sys.path.append("/Users/louisrae/Documents/tracking")
+sys.path.append(str(pathlib.Path(__file__).parent.parent.resolve()) + "/src")
 
-from src.weekly_totals import SSBTotals
-from src.constants import *
-from src.common import *
+from weekly_totals import SSBTotals
+from constants import *
+from common import *
 import gspread
 from datetime import date
 

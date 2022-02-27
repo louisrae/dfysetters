@@ -1,9 +1,5 @@
 """This module is used to get the WTD and MTD totals for all relevent clients to see where issues lay
 """
-import sys
-import os
-
-sys.path.append(f"/Users/{os.environ['USER']}/Documents/tracking/src")
 import pandas as pd
 from constants import *
 import logging

@@ -1,10 +1,6 @@
 """This module takes in the csv of team member information and creates objects 
 for each person to use for other functions
 """
-import sys
-import os
-
-sys.path.append(f"/Users/{os.environ['USER']}/Documents/tracking/src")
 from common import read_dataframe_of_roles
 
 
