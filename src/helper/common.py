@@ -2,6 +2,8 @@
 import sys
 from pathlib import Path
 
+from matplotlib.pyplot import table
+
 sys.path.append(str(Path(__file__).parents[1]) + "/helper")
 
 from datetime import timedelta
@@ -10,7 +12,7 @@ import pandas as pd
 from constants import DATABASE_URI
 
 
-def read_dataframe_of_roles():
+def read_dataframe_of_roles(table_name):
     """Uses postgres to pull through all members in the team database
 
     Returns:
@@ -18,7 +20,7 @@ def read_dataframe_of_roles():
     """
     engine = create_engine(DATABASE_URI)
 
-    myQuery = "SELECT full_name,company_role FROM team"
+    myQuery = f"SELECT full_name,company_role FROM {table_name}"
     df = pd.read_sql_query(myQuery, engine)
     return df
 
@@ -59,7 +61,7 @@ def get_day_list(start_date, end_date):
     return daylist
 
 
-def generate_variables():
+def generate_variables(table_name):
     """Gets all of the details from the team database for one employee
 
     Returns:
@@ -69,7 +71,7 @@ def generate_variables():
         "postgresql://postgres:qweasdzxcQ101@localhost:5432/general"
     )
     name = input("What is the name of the person you are searching for? ")
-    myQuery = f"SELECT * FROM team WHERE full_name = '{name}'"
+    myQuery = f"SELECT * FROM {table_name} WHERE full_name = '{name}'"
     df = pd.read_sql_query(myQuery, engine)
 
     return df

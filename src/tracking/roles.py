@@ -65,7 +65,7 @@ class Roles:
         """Registers every member into dictionary and full list who
         is in database
         """
-        for name, role in list(read_dataframe_of_roles().values):
+        for name, role in list(read_dataframe_of_roles("team").values):
             person = Person(name, role)
             if role == "Pod Lead":
                 PodLead().register_member(person)

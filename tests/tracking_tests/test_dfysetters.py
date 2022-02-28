@@ -94,7 +94,7 @@ class TestLeaderboard:
         todo = leaderboard.getSortedTCandSSNumbersForTeamMembers(
             self.role_list, data
         )
-        assert 292 == todo.sum().sum()
+        assert 402 == todo.sum().sum()
 
 
 class TestScheduleOnce:

@@ -12,17 +12,17 @@ class TestOnboarding:
         assert "INSERT INTO" in query and "VALUES" in query
 
     def test_getCorrectMeetingsBasedOnRoleAndPod(self):
-        name_from_db = generate_variables()
+        name_from_db = generate_variables("teamtest")
         meetings = get_events_to_inv(name_from_db)
         assert "Pod Lead Weekly" in meetings
 
     def test_followUpAddedToCalendar(self):
-        name_from_db = generate_variables()
+        name_from_db = generate_variables("teamtest")
         message = set_follow_up(name_from_db)
         assert "Tylee Groll" in message and "2021-06-29" in message
 
     def test_getCorrectChannelsBasedOnRoleAndPod(self):
-        name_from_db = generate_variables()
+        name_from_db = generate_variables("teamtest")
         channel_list = slack_data_setup(name_from_db)
         assert all(
             elem in ["C0199AXJC80", "C01GHC2Q3GC", "C02SXKE5S6R", "C026GHAF3A5"]
@@ -30,7 +30,7 @@ class TestOnboarding:
         )
 
     def test_correctEmailBeingSent(self):
-        name_from_db = generate_variables()
+        name_from_db = generate_variables("teamtest")
         email_head = "Tylee Groll"
         email = email_setup(name_from_db)
         assert email_head in email[2]
