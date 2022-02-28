@@ -80,6 +80,11 @@ class Roles:
 
 
 class SnrSpecialist(Roles):
+    """Class for adding all Snr Specialist team members
+
+    Args:
+        Roles (Class): Roles class as defined on line 38
+    """
 
     all_members = set()
 
@@ -89,6 +94,11 @@ class SnrSpecialist(Roles):
 
 
 class JnrSpecialist(Roles):
+    """Class for adding all Jnr Specialist team members
+
+    Args:
+        Roles (Class): Roles class as defined on line 38
+    """
 
     all_members = set()
 
@@ -98,6 +108,11 @@ class JnrSpecialist(Roles):
 
 
 class PodLead(Roles):
+    """Class for adding all Pod Lead team members
+
+    Args:
+        Roles (Class): Roles class as defined on line 38
+    """
 
     all_members = set()
 
@@ -107,6 +122,11 @@ class PodLead(Roles):
 
 
 class Setter(Roles):
+    """Class for adding all Setter team members
+
+    Args:
+        Roles (Class): Roles class as defined on line 38
+    """
 
     all_members = set()
 
@@ -116,6 +136,11 @@ class Setter(Roles):
 
 
 class Operations(Roles):
+    """Class for adding all Operation team members
+
+    Args:
+        Roles (Class): Roles class as defined on line 38
+    """
 
     all_members = set()
 

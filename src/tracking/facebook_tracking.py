@@ -261,11 +261,35 @@ class Leaderboard:
 
 class ScheduleOnce:
     def __init__(self, url, headers):
+        """This module is used with the Schedule Once API to get TC Booked and
+        TC Scheduled Data from our clients
+
+        You can see all uses for the API here:
+        https://developers.oncehub.com/reference/introduction
+
+        Args:
+            url (str): URL for Schedule Once API, usually:
+            https://api.oncehub.com/v2/bookings?
+
+            headers (dictionary): Parameters for the API. Usually:
+            {"Accept": "application/json",
+            "API-Key": "API KEY"}
+        """
 
         self.url = url
         self.headers = headers
 
     def getBookingData(self, params):
+        """Gets all data from the Schedule Once API based on given parameters
+
+        Args:
+            params (dictionary): Dictionary of parameters, taken from the
+            Schedule Once API reference. Usually used with starting_time and
+            creation_time
+
+        Returns:
+            list: List of booking objects (dictionaries)
+        """
 
         url = self.url
         bookings = list()
@@ -291,6 +315,16 @@ class ScheduleOnce:
         return bookings
 
     def getValueCountsFromDict(self, data):
+        """Takes in a given data set and gives the value counts of the sources
+        of the data
+
+        Args:
+            data (list): List of bookings (dictionaries) with booking data
+
+        Returns:
+            dataframe: 2 column dataframe with the booking page name and source
+            as columns. Source is Value Counts
+        """
 
         booking_data = list()
         for booking in data:

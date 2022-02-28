@@ -14,7 +14,7 @@ def read_dataframe_of_roles():
     """Uses postgres to pull through all members in the team database
 
     Returns:
-        dataframe: Returns two columns, name and role
+        dataframe: Returns two columns, name and role for all members in team
     """
     engine = create_engine(DATABASE_URI)
 
@@ -40,7 +40,7 @@ def change_date_column_in_df_to_datetime(sheet):
 
 
 def get_day_list(start_date, end_date):
-    """_summary_
+    """Gets a list of datetime objects between two dates
 
     Args:
         start_date (datetime.date): A date lower than the end date
@@ -60,6 +60,11 @@ def get_day_list(start_date, end_date):
 
 
 def generate_variables():
+    """Gets all of the details from the team database for one employee
+
+    Returns:
+        dataframe: One row dataframe with the variables of a given employee
+    """
     engine = create_engine(
         "postgresql://postgres:qweasdzxcQ101@localhost:5432/general"
     )
