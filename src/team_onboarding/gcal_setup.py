@@ -5,7 +5,7 @@ import src_path
 from datetime import timedelta
 from gcsa.google_calendar import GoogleCalendar
 from gcsa.event import Event
-from helper.constants import GCAL_CREDENTIALS_PATH, GCAL_TOKEN_PICKLE_PATH
+from helper.constants import *
 
 
 def set_follow_up(df):
@@ -16,7 +16,7 @@ def set_follow_up(df):
         needs to be followed up with"""
 
     calendar = GoogleCalendar(
-        "louisrae@settersandspecialists.com",
+        GCAL_EMAIL_LOUISRAE,
         credentials_path=GCAL_CREDENTIALS_PATH,
         token_path=GCAL_TOKEN_PICKLE_PATH,
     )
@@ -31,7 +31,8 @@ def set_follow_up(df):
 
 
 def get_events_to_inv(df):
-    """_summary_
+    """Gives a list of events based on the team member that they need to be
+    invited to
 
     Args:
         df (dataframe): Single row dataframe with the data of the employee who

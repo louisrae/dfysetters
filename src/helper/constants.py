@@ -1,5 +1,10 @@
-### Other
+### Databases
 DATABASE_URI = "postgresql://postgres:qweasdzxcQ101@localhost:5432/general"
+POSTGRES_DATABASE = "general"
+POSTGRES_USERNAME = "postgres"
+POSTGRES_PASSWORD = "qweasdzxcQ101"
+
+### Other
 SPECIALIST_NAME = "Tylee Evans Groll"
 SCHEDULE_ONCE_HEADERS = {
     "Accept": "application/json",
@@ -32,3 +37,4 @@ GCAL_CREDENTIALS_PATH = "/Users/louisrae/Documents/code/dfysetters/src/helper/cr
 GCAL_TOKEN_PICKLE_PATH = "/Users/louisrae/Documents/code/dfysetters/src/helper/credentials/token.pickle"
 GSPREAD_CREDENTIALS = f"/Users/louisrae/Documents/code/dfysetters/src/helper/credentials/credentials.json"
 AUTHORIZED_USER = f"/Users/louisrae/Documents/code/dfysetters/src/helper/credentials/authorized_user.json"
+GCAL_EMAIL_LOUISRAE = "louisrae@settersandspecialists.com"

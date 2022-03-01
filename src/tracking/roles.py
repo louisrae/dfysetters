@@ -2,7 +2,7 @@
 for each person to use for other functions
 """
 import src_path
-from helper.databases import read_dataframe_of_roles
+from helper.databases import Databases
 
 
 class Person:
@@ -65,7 +65,9 @@ class Roles:
         """Registers every member into dictionary and full list who
         is in database
         """
-        for name, role in list(read_dataframe_of_roles("team").values):
+        for name, role in list(
+            Databases("team").read_dataframe_of_roles().values
+        ):
             person = Person(name, role)
             if role == "Pod Lead":
                 PodLead().register_member(person)
@@ -80,11 +82,7 @@ class Roles:
 
 
 class SnrSpecialist(Roles):
-    """Class for adding all Snr Specialist team members
-
-    Args:
-        Roles (Class): Roles class as defined on line 38
-    """
+    """Class for adding all Snr Specialist team members"""
 
     all_members = set()
 
@@ -94,11 +92,7 @@ class SnrSpecialist(Roles):
 
 
 class JnrSpecialist(Roles):
-    """Class for adding all Jnr Specialist team members
-
-    Args:
-        Roles (Class): Roles class as defined on line 38
-    """
+    """Class for adding all Jnr Specialist team members"""
 
     all_members = set()
 
@@ -108,11 +102,7 @@ class JnrSpecialist(Roles):
 
 
 class PodLead(Roles):
-    """Class for adding all Pod Lead team members
-
-    Args:
-        Roles (Class): Roles class as defined on line 38
-    """
+    """Class for adding all Pod Lead team members"""
 
     all_members = set()
 
@@ -122,11 +112,7 @@ class PodLead(Roles):
 
 
 class Setter(Roles):
-    """Class for adding all Setter team members
-
-    Args:
-        Roles (Class): Roles class as defined on line 38
-    """
+    """Class for adding all Setter team members"""
 
     all_members = set()
 
@@ -136,11 +122,7 @@ class Setter(Roles):
 
 
 class Operations(Roles):
-    """Class for adding all Operation team members
-
-    Args:
-        Roles (Class): Roles class as defined on line 38
-    """
+    """Class for adding all Operation team members"""
 
     all_members = set()
 

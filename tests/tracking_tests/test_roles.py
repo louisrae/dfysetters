@@ -1,7 +1,7 @@
 import src_path
 import pytest
 from tracking.roles import *
-from helper.databases import read_dataframe_of_roles
+from helper.databases import Databases
 
 
 class TestRoles:
@@ -15,7 +15,7 @@ class TestRoles:
         assert jack.name == "Jack" and jack.role == "Snr Specialist"
 
     def test_canRegisterAllMembers(self, register):
-        df = read_dataframe_of_roles("teamtest")
+        df = Databases("teamtest").read_dataframe_of_roles()
         assert len(df.index) == len(Roles.all_team_members_in_company)
 
     def test_canGetAllSnrSpecialists(self, register):

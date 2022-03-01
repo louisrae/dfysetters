@@ -44,7 +44,7 @@ class SSBTotals:
         Returns:
             df: Dataframe with total SSB based on Timeframe
         """
-        totals = {}
+        totals = dict()
 
         daily_kpis = gc.open_by_url(DAILY_KPIS_URL)
 
