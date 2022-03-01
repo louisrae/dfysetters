@@ -2,18 +2,7 @@
 invited to"""
 import src_path
 from slack import WebClient
-from helper.constants import (
-    GIRLS_ID,
-    PURPLE_ID,
-    SCRUMTEAM_ID,
-    SFU_ID,
-    SPECIALISTS_ID,
-    SETTERS_ID,
-    LEVEL_5_ID,
-    SETTERS_TEAM_ID,
-    CLIENT_REPORTS_ID,
-    SLACK_TOKEN,
-)
+from helper.constants import *
 
 
 client = WebClient(token=SLACK_TOKEN)
@@ -31,6 +20,8 @@ def slack_data_setup(df):
     """
     pod = df["pod"][0]
     role = df["company_role"][0]
+    user_id = df["slack_id"][0]
+
     channels = []
     if pod == "Girls":
         channels.append(GIRLS_ID)
@@ -50,9 +41,5 @@ def slack_data_setup(df):
 
     channels.append(SETTERS_TEAM_ID)
     channels.append(CLIENT_REPORTS_ID)
-
-    pod = df["pod"][0]
-    role = df["company_role"][0]
-    user_id = df["slack_id"][0]
 
     return user_id, channels

@@ -1,5 +1,5 @@
 import src_path
-from helper.common import generate_variables
+from helper.databases import generate_variables
 from team_onboarding.add_team_member_to_db import get_query
 from team_onboarding.slack_setup import slack_data_setup
 from team_onboarding.welcome_email import email_setup
