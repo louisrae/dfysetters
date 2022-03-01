@@ -8,7 +8,7 @@ from gcsa.event import Event
 from helper.constants import *
 
 
-def set_follow_up(df):
+def set_follow_up(row_of_df):
     """Will put a follow up event on louisrae@settersandspecialists.com calendar
 
     Args:
@@ -21,8 +21,8 @@ def set_follow_up(df):
         token_path=GCAL_TOKEN_PICKLE_PATH,
     )
 
-    name = df["full_name"][0]
-    start = df["start_date"][0] + timedelta(14)
+    name = row_of_df["full_name"][0]
+    start = row_of_df["start_date"][0] + timedelta(14)
     end = start + timedelta(1)
     event = Event(f"End of trial for {name}", start=start, end=end)
     calendar.add_event(event)
@@ -30,19 +30,19 @@ def set_follow_up(df):
     return f"{name} added to calendar for {start}"
 
 
-def get_events_to_inv(df):
+def get_events_to_inv(row_of_df):
     """Gives a list of events based on the team member that they need to be
     invited to
 
     Args:
-        df (dataframe): Single row dataframe with the data of the employee who
+        row_of_df (dataframe): Single row dataframe with the data of the employee who
         needs to be followed up with
 
     Returns:
         _type_: _description_
     """
-    role = df["company_role"][0]
-    pod = df["pod"][0]
+    role = row_of_df["company_role"][0]
+    pod = row_of_df["pod"][0]
     meetings = []
 
     if role == "Pod Lead":

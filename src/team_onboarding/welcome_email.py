@@ -1,30 +1,30 @@
 """This module generates an email that we can send to the new team member"""
 
 
-def email_setup(df):
+def email_setup(row_of_df):
     """Generates the email to be sent
 
     Args:
-        df (dataframe): Single row dataframe with the data of the employee who
+        row_of_df (dataframe): Single row dataframe with the data of the employee who
         needs to be followed up with
 
     Returns:
         tuple: email address to send to, subject line of email, body of email
     """
 
-    email_address = df["company_email"][0]
+    email_address = row_of_df["company_email"][0]
 
     slack_link = input("What is the manual invite link you generated? ")
 
     subject = "Congratulations!"
 
-    body = f"""{df["full_name"][0]},
+    body = f"""{row_of_df["full_name"][0]},
 
-    Congratulations and welcome to Setters&Specialists! We've decided to bring you on board as our new {df["company_role"][0]}. We're excited to have you and can't wait for you to start!
+    Congratulations and welcome to Setters&Specialists! We've decided to bring you on board as our new {row_of_df["company_role"][0]}. We're excited to have you and can't wait for you to start!
 
     As discussed, here are the terms of your employment:
 
-    Rate: {df["pay_per_client"][0]} USD per client (OTE: 3k)
+    Rate: {row_of_df["pay_per_client"][0]} USD per client (OTE: 3k)
 
     Hours: 9-5 CST but performance is more important
 
@@ -38,7 +38,7 @@ def email_setup(df):
 
     Watch Asana Initial Video (In Onboarding Project in Asana)
 
-    An Asana and Slack Invite have been sent to {df["company_email"][0]}, please confirm once you have this.
+    An Asana and Slack Invite have been sent to {row_of_df["company_email"][0]}, please confirm once you have this.
 
     We cannot move forward until the above 2 tasks are complete. :)
 

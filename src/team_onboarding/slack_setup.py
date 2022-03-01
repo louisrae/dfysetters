@@ -8,19 +8,19 @@ from helper.constants import *
 client = WebClient(token=SLACK_TOKEN)
 
 
-def slack_data_setup(df):
+def slack_data_setup(row_of_df):
     """Gives us a list of channels to invite a Slack Id to
 
     Args:
-        df (dataframe): Single row dataframe with the data of the employee who
+        row_of_df (dataframe): Single row dataframe with the data of the employee who
         needs to be followed up with
 
     Returns:
         tuple: slack_id of the desired team member, channels to invite them to
     """
-    pod = df["pod"][0]
-    role = df["company_role"][0]
-    user_id = df["slack_id"][0]
+    pod = row_of_df["pod"][0]
+    role = row_of_df["company_role"][0]
+    user_id = row_of_df["slack_id"][0]
 
     channels = []
     if pod == "Girls":

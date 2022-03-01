@@ -13,6 +13,11 @@ class Databases:
     def __init__(self, table_name):
         self.engine = create_engine(DATABASE_URI)
         self.table_name = table_name
+        self.conn = pg2.connect(
+            database=POSTGRES_DATABASE,
+            user=POSTGRES_USERNAME,
+            password=POSTGRES_PASSWORD,
+        )
 
     def read_dataframe_of_roles(self):
         """Uses postgres to pull through all members in the team database
@@ -25,19 +30,23 @@ class Databases:
         df = pd.read_sql_query(myQuery, self.engine)
         return df
 
-    def generate_variables(self):
+    def get_row_of_database_based_on_name(self):
         """Gets all of the details from the team database for one employee
 
         Returns:
             dataframe: One row dataframe with the variables of a given employee
         """
-        name = input("What is the name of the person you are searching for? ")
-        myQuery = f"SELECT * FROM {self.table_name} WHERE full_name = '{name}'"
-        df = pd.read_sql_query(myQuery, self.engine)
+        email = input(
+            "What is the work_email of the person you are searching for? "
+        )
+        myQuery = (
+            f"SELECT * FROM {self.table_name} WHERE company_email = '{email}'"
+        )
+        row_of_df = pd.read_sql_query(myQuery, self.engine)
 
-        return df
+        return row_of_df
 
-    def get_query(self):
+    def get_insert_into_query(self):
         """Takes input from the user and puts it into a SQL query
 
         Returns:
@@ -64,18 +73,13 @@ class Databases:
 
         return query
 
-    def add_member(self, query):
+    def add_member_to_database(self, query):
         """Uses psycopg2 to push a given query to a selected database
 
         Args:
             query (str): sql string with desired query, usually an INSERT INTO
         """
 
-        conn = pg2.connect(
-            database=POSTGRES_DATABASE,
-            user=POSTGRES_USERNAME,
-            password=POSTGRES_PASSWORD,
-        )
-        conn.cursor().execute(query)
-        conn.commit()
+        self.conn.cursor().execute(query)
+        self.conn.commit()
         print("Person Added")
