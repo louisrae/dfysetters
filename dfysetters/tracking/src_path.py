@@ -4,4 +4,4 @@ file and the test file to all work together"""
 from pathlib import Path
 import sys
 
-sys.path.append(str(Path(__file__).parents[2]) + "/src")
+sys.path.append(str(Path(__file__).parents[2]) + "/dfysetters")
