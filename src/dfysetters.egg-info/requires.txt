@@ -1,4 +1,0 @@
-pandas
-gspread
-gcsa
-slackclient
