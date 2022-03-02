@@ -6,7 +6,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="dfysetters",
-    version="2.0.2",
+    version="2.0.4",
     description="Back end code base for a sales-as-a-service business",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -14,7 +14,6 @@ setup(
     author="Louis-Rae",
     author_email="louisrae@settersandspecialists.com",
     keywords="tracking, email, onboarding",
-    package_dir={"": "src"},
     packages=find_packages(),
     python_requires=">=3.6, <4",
     install_requires=["pandas", "gspread", "gcsa", "slackclient"],
