@@ -1,0 +1,8 @@
+LICENSE.txt
+README.md
+setup.py
+src/dfysetters.egg-info/PKG-INFO
+src/dfysetters.egg-info/SOURCES.txt
+src/dfysetters.egg-info/dependency_links.txt
+src/dfysetters.egg-info/requires.txt
+src/dfysetters.egg-info/top_level.txt
