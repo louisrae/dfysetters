@@ -15,7 +15,7 @@ setup(
     author_email="louisrae@settersandspecialists.com",
     keywords="tracking, email, onboarding",
     package_dir={"": "src"},
-    packages=find_packages(where="src"),
+    packages=find_packages(),
     python_requires=">=3.6, <4",
     install_requires=["pandas", "gspread", "gcsa", "slackclient"],
 )
