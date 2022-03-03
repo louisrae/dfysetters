@@ -49,13 +49,19 @@ These are the things you need to use the software and how to install them. All o
 ## Usage
 
 Rank all team members by metric
+
 `leaderboard = Leaderboard(level_10_sheet)`
+
 `weekly_totals = leaderboard.getWeekTotalFromLevel10()`
+
 `rank_team_members = leaderboard.getSortedTCandSSNumbersForTeamMembers(role_list, weekly_totals)`
 
 Invites team member to Slack channels based on pod
-`team_member = get_row_of_database_based_on_name()`
+
+`team_member = get_row_of_database_based_on_name()` 
+
 `user_id, channels = slack_data_setup(team_member)`
+
 `client.conversations_invite(channel=channel, users=user_id)`
 
 For more examples, please refer to the [Documentation](https://github.com/louisrae/dfysetters)
