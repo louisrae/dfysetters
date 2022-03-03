@@ -1,8 +1,3 @@
-import sys
-from pathlib import Path
-
-sys.path.append(str(Path(__file__).parents[1]) + "/helper")
-
 from constants import *
 from sqlalchemy import create_engine
 import pandas as pd
