@@ -69,7 +69,7 @@ class UnansweredMessages:
 
         return last_sender_count
 
-    def get_all_unanswered(self, workbook):
+    def get_all_unanswered(self):
         """_summary_
 
         Args:
@@ -82,7 +82,7 @@ class UnansweredMessages:
             each sheet of the workbook, keyed by sheet title
         """
         average_per_sheet = dict()
-        for sheet in workbook:
+        for sheet in self.workbook:
             df = UnansweredMessages(
                 self.workbook
             ).get_sheet_values_to_dataframe(sheet)

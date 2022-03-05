@@ -8,14 +8,11 @@ from tracking.roles import *
 
 
 class TestUnansweredMessages:
-    message_data_workbook = None
-
-    def setup(cls):
-        gc = gspread.oauth(
-            credentials_filename=GSPREAD_CREDENTIALS,
-            authorized_user_filename=AUTHORIZED_USER,
-        )
-        cls.message_data_workbook = gc.open_by_url(MESSAGE_DATA_WORKBOOK)
+    gc = gspread.oauth(
+        credentials_filename=GSPREAD_CREDENTIALS,
+        authorized_user_filename=AUTHORIZED_USER,
+    )
+    message_data_workbook = gc.open_by_url(MESSAGE_DATA_WORKBOOK)
 
     @pytest.fixture()
     def tracking(self):
@@ -29,7 +26,7 @@ class TestUnansweredMessages:
         assert "Tylee Evans Groll" in list(df["Sender"].values)
 
     def test_canPerformMathOnTimestamp(self, tracking):
-        d = tracking.get_all_unanswered(self.message_data_workbook)
+        d = tracking.get_all_unanswered()
         assert 50 == sum(d.values())
 
 

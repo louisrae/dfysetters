@@ -32,5 +32,5 @@ class TestWeeklyTotals:
 
     def test_allClientsAreInDataframe(self):
         days = get_day_list(self.start, self.end)
-        ss = SSBTotals(self.start, self.end).getTotalsDataframe(self.gc, days)
+        ss = SSBTotals().getTotalsDataframe(self.gc, days)
         assert sum(ss.index) == 406

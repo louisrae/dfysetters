@@ -7,17 +7,16 @@ from helper.common import change_date_column_in_df_to_datetime
 
 
 class SSBTotals:
-    def __init__(self, start_date, end_date) -> None:
+    def __init__(self) -> None:
         """Main class that houses functions to pull data
 
         Args:
             start_date (datetime.date): The start date used to pull SS Total
             end_date (datetime.date): The end date used to pull SS Total
         """
-        self.start_date = start_date
-        self.end_date = end_date
 
-    def getSSForEachDayInDayList(self, sheet, day_list):
+    @staticmethod
+    def getSSForEachDayInDayList(sheet, day_list):
         """Gives the amount of SS booked in a given time period
 
         Args:
