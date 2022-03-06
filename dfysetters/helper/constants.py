@@ -38,3 +38,8 @@ GCAL_TOKEN_PICKLE_PATH = "/Users/louisrae/Documents/code/published/dfysetters/df
 GSPREAD_CREDENTIALS = f"/Users/louisrae/Documents/code/published/dfysetters/dfysetters/helper/credentials/credentials.json"
 AUTHORIZED_USER = f"/Users/louisrae/Documents/code/published/dfysetters/dfysetters/helper/credentials/authorized_user.json"
 GCAL_EMAIL_LOUISRAE = "louisrae@settersandspecialists.com"
+
+
+### Checking Sales Data
+MONTH_NUMBER_WEEK_AGO = 3
+DAY_NUMBER_WEEK_AGO = 2
