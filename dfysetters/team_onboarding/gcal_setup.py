@@ -15,11 +15,7 @@ def set_follow_up(row_of_df):
         df (dataframe): Single row dataframe with the data of the employee who
         needs to be followed up with"""
 
-    calendar = GoogleCalendar(
-        GCAL_EMAIL_LOUISRAE,
-        credentials_path=GCAL_CREDENTIALS_PATH,
-        token_path=GCAL_TOKEN_PICKLE_PATH,
-    )
+    calendar = GoogleCalendar()
 
     name = row_of_df["full_name"][0]
     start = row_of_df["start_date"][0] + timedelta(14)

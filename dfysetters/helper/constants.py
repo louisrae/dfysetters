@@ -33,10 +33,6 @@ SCRUMTEAM_ID = "C01K8EK5VJ4"
 
 ### Credentials
 SLACK_TOKEN = "xoxp-63714579588-1272436082640-3132949264738-c970ca4315368896271cd06b09d62e77"
-GCAL_CREDENTIALS_PATH = "/Users/louisrae/Documents/code/published/dfysetters/dfysetters/helper/credentials/credentials.json"
-GCAL_TOKEN_PICKLE_PATH = "/Users/louisrae/Documents/code/published/dfysetters/dfysetters/helper/credentials/token.pickle"
-GSPREAD_CREDENTIALS = f"/Users/louisrae/Documents/code/published/dfysetters/dfysetters/helper/credentials/credentials.json"
-AUTHORIZED_USER = f"/Users/louisrae/Documents/code/published/dfysetters/dfysetters/helper/credentials/authorized_user.json"
 GCAL_EMAIL_LOUISRAE = "louisrae@settersandspecialists.com"
 
 

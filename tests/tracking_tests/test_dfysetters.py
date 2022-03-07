@@ -8,10 +8,7 @@ from tracking.roles import *
 
 
 class TestUnansweredMessages:
-    gc = gspread.oauth(
-        credentials_filename=GSPREAD_CREDENTIALS,
-        authorized_user_filename=AUTHORIZED_USER,
-    )
+    gc = gspread.oauth()
     message_data_workbook = gc.open_by_url(MESSAGE_DATA_WORKBOOK)
 
     @pytest.fixture()
@@ -33,10 +30,7 @@ class TestUnansweredMessages:
 class TestAveragePerConversation:
     @pytest.fixture()
     def average(self):
-        gc = gspread.oauth(
-            credentials_filename=GSPREAD_CREDENTIALS,
-            authorized_user_filename=AUTHORIZED_USER,
-        )
+        gc = gspread.oauth()
         message_data_workbook = gc.open_by_url(MESSAGE_DATA_WORKBOOK)
         average = AveragePerConversation(message_data_workbook.sheet1)
         return average
@@ -62,10 +56,7 @@ class TestLeaderboard:
 
     @pytest.fixture()
     def leaderboard(self):
-        gc = gspread.oauth(
-            credentials_filename=GSPREAD_CREDENTIALS,
-            authorized_user_filename=AUTHORIZED_USER,
-        )
+        gc = gspread.oauth()
         level_10_sheet = gc.open_by_url(LEVEL_10_SHEET_URL).sheet1
         leaderboard = Leaderboard(level_10_sheet)
         return leaderboard

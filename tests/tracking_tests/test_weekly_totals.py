@@ -1,6 +1,5 @@
 import src_path
 from tracking.weekly_totals import SSBTotals
-from helper.constants import GSPREAD_CREDENTIALS, AUTHORIZED_USER
 from helper.common import get_day_list
 import gspread
 from datetime import date
@@ -15,10 +14,7 @@ class TestWeeklyTotals:
     def setup(cls):
         cls.start = date(2022, 1, 1)
         cls.end = date(2022, 1, 15)
-        cls.gc = gspread.oauth(
-            credentials_filename=GSPREAD_CREDENTIALS,
-            authorized_user_filename=AUTHORIZED_USER,
-        )
+        cls.gc = gspread.oauth()
 
     def test_canWTDListOfDaysIsListAndContainsDates(self):
         days = get_day_list(self.start, self.end)
