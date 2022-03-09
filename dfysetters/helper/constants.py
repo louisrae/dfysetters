@@ -18,6 +18,7 @@ SCHEDULE_ONCE_URL = (
 DAILY_KPIS_URL = "https://docs.google.com/spreadsheets/d/18AgIMFyPCOxHYQXRYJowihJd_i2kRMB9pzB5jdA3ZVc/edit#gid=1070219116"
 MESSAGE_DATA_WORKBOOK = "https://docs.google.com/spreadsheets/d/1ilUCdcEP-TDUMrC8Alwp2x3Jq2LYfOzINFfF2MTY91k/edit#gid=1232583697"
 LEVEL_10_SHEET_URL = "https://docs.google.com/spreadsheets/d/1Y7cQYW1MJ1HstJVJEADVqKgbI-bOMyv74159jOJQtc4/edit#gid=1480274768"
+APPOINTMENTS_SET_URL = "https://docs.google.com/spreadsheets/d/191VOLxOdD-yDSUa4_qeHiDg2HoZ7cu0Ai3bSN9UkPQw/edit#gid=1189654778"
 
 
 ### Slack Channels
@@ -32,7 +33,6 @@ GIRLS_ID = "C026GHAF3A5"
 SCRUMTEAM_ID = "C01K8EK5VJ4"
 
 ### Credentials
-SLACK_TOKEN = "xoxp-63714579588-1272436082640-3132949264738-c970ca4315368896271cd06b09d62e77"
 GCAL_EMAIL_LOUISRAE = "louisrae@settersandspecialists.com"
 
 

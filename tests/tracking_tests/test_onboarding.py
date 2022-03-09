@@ -1,33 +1,35 @@
+from calendar import calendar
 import src_path
 from helper.databases import Databases
-from team_onboarding.slack_setup import slack_data_setup
-from team_onboarding.welcome_email import email_setup
-from team_onboarding.gcal_setup import get_events_to_inv, set_follow_up
+from tracking_and_onboarding.onboarding_scripts import Slack
+from tracking_and_onboarding.onboarding_scripts import GoogleSetup
+from gcsa.google_calendar import GoogleCalendar
+from slack import WebClient
+from helper.credentials.apis import *
+
+client = WebClient(token=SLACK_API)
+
+
+name_from_db = Databases("teamtest").get_row_of_database_based_on_name()
+cal = GoogleCalendar()
 
 
 class TestOnboarding:
-
-    name_from_db = None
-
-    def setup(cls):
-        cls.name_from_db = Databases(
-            "teamtest"
-        ).get_row_of_database_based_on_name()
-
     def test_queryIsCorrect(self):
         query = Databases("team").get_insert_into_query()
         assert "INSERT INTO" in query and "VALUES" in query
 
     def test_getCorrectMeetingsBasedOnRoleAndPod(self):
-        meetings = get_events_to_inv(self.name_from_db)
+        meetings = GoogleSetup(name_from_db, cal).get_events_to_inv()
+
         assert "Pod Lead Weekly" in meetings
 
     def test_followUpAddedToCalendar(self):
-        message = set_follow_up(self.name_from_db)
+        message = GoogleSetup(name_from_db, cal).set_follow_up()
         assert "Tylee Groll" in message and "2021-06-29" in message
 
     def test_getCorrectChannelsBasedOnRoleAndPod(self):
-        channel_list = slack_data_setup(self.name_from_db)
+        channel_list = Slack(client, name_from_db).slack_data_setup()
         assert all(
             elem in ["C0199AXJC80", "C01GHC2Q3GC", "C02SXKE5S6R", "C026GHAF3A5"]
             for elem in channel_list[1]
@@ -35,5 +37,5 @@ class TestOnboarding:
 
     def test_correctEmailBeingSent(self):
         email_head = "Tylee Groll"
-        email = email_setup(self.name_from_db)
+        email = GoogleSetup(name_from_db, cal).email_setup()
         assert email_head in email[2]

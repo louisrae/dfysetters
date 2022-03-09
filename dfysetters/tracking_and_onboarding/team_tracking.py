@@ -4,7 +4,6 @@ from it """
 
 import pandas as pd
 import numpy as np
-import requests
 from statistics import mean
 
 
@@ -257,93 +256,3 @@ class Leaderboard:
             )
 
         return pd.DataFrame(lofd)
-
-
-class ScheduleOnce:
-    def __init__(self, url, headers):
-        """This module is used with the Schedule Once API to get TC Booked and
-        TC Scheduled Data from our clients
-
-        You can see all uses for the API here:
-        https://developers.oncehub.com/reference/introduction
-
-        Args:
-            url (str): URL for Schedule Once API, usually:
-            https://api.oncehub.com/v2/bookings?
-
-            headers (dictionary): Parameters for the API. Usually:
-            {"Accept": "application/json",
-            "API-Key": "API KEY"}
-        """
-
-        self.url = url
-        self.headers = headers
-
-    def getBookingData(self, params):
-        """Gets all data from the Schedule Once API based on given parameters
-
-        Args:
-            params (dictionary): Dictionary of parameters, taken from the
-            Schedule Once API reference. Usually used with starting_time and
-            creation_time
-
-        Returns:
-            list: List of booking objects (dictionaries)
-        """
-
-        url = self.url
-        bookings = list()
-
-        while True:
-            response = requests.request(
-                "GET", url=url, headers=self.headers, params=params
-            ).json()["data"]
-
-            for i in response:
-                bookings.append(i)
-
-            if len(response) >= 100:
-                url = (
-                    "https://api.oncehub.com/v2/bookings?after="
-                    + bookings[-1]["id"]
-                    + "&limit=100&expand=booking_page"
-                )
-
-            elif len(response) < 100:
-                break
-
-        return bookings
-
-    def getValueCountsFromDict(self, data):
-        """Takes in a given data set and gives the value counts of the sources
-        of the data
-
-        Args:
-            data (list): List of bookings (dictionaries) with booking data
-
-        Returns:
-            dataframe: 2 column dataframe with the booking page name and source
-            as columns. Source is Value Counts
-        """
-
-        booking_data = list()
-        for booking in data:
-            page_source_name = dict()
-            page_source_name["Name"] = booking["form_submission"]["name"]
-            page_source_name["Page Name"] = booking["booking_page"]["label"]
-            try:  # If booked on certain link, there is not a custom field,
-                # though we know what the source is
-                page_source_name["Source"] = booking["form_submission"][
-                    "custom_fields"
-                ][0]["value"]
-            except:
-                page_source_name["Source"] = "Inbound Triage"
-            booking_data.append(page_source_name)
-
-        vc = (
-            pd.DataFrame(booking_data)
-            .groupby("Page Name")["Source"]
-            .value_counts()
-        )
-
-        return vc

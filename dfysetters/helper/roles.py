@@ -1,8 +1,8 @@
 """This module takes in the csv of team member information and creates objects 
 for each person to use for other functions
 """
-import src_path
-from helper.databases import Databases
+
+from databases import Databases
 
 
 class Person:

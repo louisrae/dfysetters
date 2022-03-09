@@ -1,10 +1,9 @@
 import src_path
 import gspread
 import pytest
-import datetime
-from tracking.facebook_tracking import *
+from tracking_and_onboarding.team_tracking import *
 from helper.constants import *
-from tracking.roles import *
+from helper.roles import *
 
 
 class TestUnansweredMessages:
@@ -71,44 +70,3 @@ class TestLeaderboard:
             self.role_list, data
         )
         assert 402 == todo.sum().sum()
-
-
-class TestScheduleOnce:
-
-    from_date = None
-    to_date = None
-
-    def setup(cls):
-        cls.from_date = str(datetime.date(2022, 2, 21))
-        cls.to_date = str(datetime.date(2022, 2, 22))
-
-    @pytest.fixture()
-    def scheduleonce(self):
-        scheduleonce = ScheduleOnce(SCHEDULE_ONCE_URL, SCHEDULE_ONCE_HEADERS)
-        return scheduleonce
-
-    def test_allTCScheduledInValueCounts(self, scheduleonce):
-        scheduled_params = {
-            "starting_time.gt": self.from_date,
-            "starting_time.lt": self.to_date,
-        }
-
-        scheduled = scheduleonce.getBookingData(scheduled_params)
-        tcs = ScheduleOnce(
-            SCHEDULE_ONCE_URL, SCHEDULE_ONCE_HEADERS
-        ).getValueCountsFromDict(scheduled)
-
-        assert tcs.values.sum() == 71
-
-    def test_allTCBookedInValueCounts(self, scheduleonce):
-        booked_params = {
-            "creation_time.gt": self.from_date,
-            "creation_time.lt": self.to_date,
-        }
-
-        booked = scheduleonce.getBookingData(booked_params)
-        tcb = ScheduleOnce(
-            SCHEDULE_ONCE_URL, SCHEDULE_ONCE_HEADERS
-        ).getValueCountsFromDict(booked)
-
-        assert tcb.values.sum() == 60
