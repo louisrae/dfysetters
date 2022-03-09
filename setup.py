@@ -6,7 +6,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="dfysetters",
-    version="2.0.7.2",
+    version="2.0.7.3",
     description="Back end code base for a sales-as-a-service business",
     long_description=long_description,
     long_description_content_type="text/markdown",
