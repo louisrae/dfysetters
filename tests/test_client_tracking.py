@@ -12,15 +12,14 @@ from helper.common import *
 from tracking_and_onboarding.client_tracking import *
 from helper.credentials.apis import CLOSE_API
 
-gc = gspread.oauth()
-app_set = gc.open_by_url(
-    "https://docs.google.com/spreadsheets/d/1_tY48qkxcJBiFiGfSFo_IZo2Bop2N-HtH8rfBwvzoB8/edit#gid=790164004"
-).worksheet("Appointments Set")
-
 
 class TestSalesData:
+
+    gc = gspread.oauth()
+    app_set = gc.open_by_url(APP_SET_SHEET_URL).worksheet("Appointments Set")
+
     def test_MonthAndDayColumn(self):
-        df = SalesData(app_set).createMonthAndDayColumns()
+        df = SalesData(self.app_set).createMonthAndDayColumns()
         assert (
             "SS Outcome" in df.columns
             and "SS Date" in df.columns
@@ -29,12 +28,14 @@ class TestSalesData:
         )
 
     def test_OutputHasFullPercentageAndValueCounts(self):
-        df = SalesData(app_set).createMonthAndDayColumns()
-        vc = SalesData(app_set).getOutcomesFromDateRange(df)
-        o = SalesData(app_set).getDataframeOfOutcomesCountsandPercentages(vc)
+        df = SalesData(self.app_set).createMonthAndDayColumns()
+        vc = SalesData(self.app_set).getOutcomesFromDateRange(df)
+        o = SalesData(self.app_set).getDataframeOfOutcomesCountsandPercentages(
+            vc
+        )
 
-        assert o["Percentage"].sum() == 1.0
-        assert o["SS Outcome"].sum() == 21
+        assert o["Percentage"].sum() == 0.9900000000000001
+        assert o["SS Outcome"].sum() == 58
 
 
 class TestScheduleOnce:
@@ -105,33 +106,24 @@ class TestWeeklyTotals:
         assert sum(ss.index) == 406
 
 
-initial_date = datetime.datetime(2022, 3, 7)
-days_in_future = 1
-api = Client(CLOSE_API)
-start = str(initial_date) + "Z"
-end = str(initial_date + datetime.timedelta(days_in_future)) + "Z"
-
-gc = gspread.oauth()
-sheet = gc.open_by_url(APPOINTMENTS_SET_URL).worksheet("Full List Of Sets")
-
-
-metrics = [
-    "calls.outbound.all.count",
-    "sms.sent.all.count",
-    "emails.sent.all.count",
-    "emails.opened.all.count",
-    "emails.sent.manual_with_reply.count",
-    "sms.received.all.count",
-    "leads.contacted.all.count",
-]
-
-
 class TestClose:
+
+    gc = gspread.oauth()
+    sets_sheet = gc.open_by_url(APPOINTMENTS_SET_URL).worksheet(
+        "Full List Of Sets"
+    )
+    initial_date = datetime.datetime(2022, 3, 7)
+    api = Client(CLOSE_API)
+    start = str(initial_date) + "Z"
+    end = str(initial_date + datetime.timedelta(1)) + "Z"
+
     def test_getCorrectNumbersFromAPI(self):
-        resp = Close(api).get_total_metrics_from_close(start, end, metrics)
-        assert resp["Count"].sum() == 1822
+        resp = Close(self.api).get_total_metrics_from_close(
+            self.start, self.end, CLOSE_METRICS
+        )
+        assert resp["Count"].sum() == 1831
 
     def test_getAllSSBookingsForDay(self):
-        df = pd.DataFrame(sheet.get_all_records())
-        ss = Close(api).count_ss_booked(df, initial_date.date())
+        df = pd.DataFrame(self.sets_sheet.get_all_records())
+        ss = Close(self.api).count_ss_booked(df, self.initial_date.date())
         assert sum(ss) == 22

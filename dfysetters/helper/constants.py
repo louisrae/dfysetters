@@ -39,3 +39,15 @@ GCAL_EMAIL_LOUISRAE = "louisrae@settersandspecialists.com"
 ### Checking Sales Data
 MONTH_NUMBER_WEEK_AGO = 3
 DAY_NUMBER_WEEK_AGO = 2
+
+### Checking Close
+APP_SET_SHEET_URL = "https://docs.google.com/spreadsheets/d/1hznTOKg-8MLcYrt0sW-Chy674JeosjSJyJo8_WbS-zE/edit#gid=790164004"
+CLOSE_METRICS = [
+    "calls.outbound.all.count",
+    "sms.sent.all.count",
+    "emails.sent.all.count",
+    "emails.opened.all.count",
+    "emails.sent.manual_with_reply.count",
+    "sms.received.all.count",
+    "leads.contacted.all.count",
+]

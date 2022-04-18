@@ -182,7 +182,7 @@ class SSBTotals:
                 totals.update(self.getSSForEachDayInDayList(sheet, day_list))
 
             except Exception as e:
-                print(f"{sheet.title}: {e}")
+                pass
 
         totals_df = pd.DataFrame(totals.items()).sort_values(by=1)
 
