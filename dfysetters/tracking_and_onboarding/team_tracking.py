@@ -189,6 +189,9 @@ class Leaderboard:
         """
 
         self.sheet = sheet
+        print(
+            "This Leaderboard function will be removed completely as of May 18. Try to move away from it"
+        )
 
     def getWeekTotalFromLevel10(self):
         """Pulls the data needed for analysis from the whole sheet. This the

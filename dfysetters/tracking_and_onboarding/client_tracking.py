@@ -192,6 +192,9 @@ class SSBTotals:
 class Close:
     def __init__(self, api) -> None:
         self.api = api
+        print(
+            "This Close function will be removed completely as of May 18. Try to move away from it"
+        )
 
     def get_total_metrics_from_close(self, start, end, metrics):
         data = {
