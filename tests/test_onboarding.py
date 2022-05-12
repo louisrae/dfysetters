@@ -1,10 +1,9 @@
-from calendar import calendar
 import src_path
 from helper.databases import Databases
 from tracking_and_onboarding.onboarding_scripts import Slack
 from tracking_and_onboarding.onboarding_scripts import GoogleSetup
 from gcsa.google_calendar import GoogleCalendar
-from slack import WebClient
+from slack_sdk import WebClient
 from helper.credentials.apis import *
 
 

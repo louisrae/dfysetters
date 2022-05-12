@@ -20,12 +20,7 @@ class SalesData:
 
     def getOutcomesFromDateRange(self, dataframe):
 
-        frame = dataframe[
-            (dataframe["Day"] >= DAY_NUMBER_WEEK_AGO)
-            & (dataframe["Month"] == MONTH_NUMBER_WEEK_AGO)
-        ]
-
-        outcomes = frame["SS Outcome"].value_counts()
+        outcomes = dataframe["SS Outcome"].value_counts()
 
         return outcomes
 

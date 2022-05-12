@@ -37,8 +37,8 @@ GCAL_EMAIL_LOUISRAE = "louisrae@settersandspecialists.com"
 
 
 ### Checking Sales Data
-MONTH_NUMBER_WEEK_AGO = 3
-DAY_NUMBER_WEEK_AGO = 2
+MONTH_NUMBER_WEEK_AGO = 1
+DAY_NUMBER_WEEK_AGO = 1
 
 ### Checking Close
 APP_SET_SHEET_URL = "https://docs.google.com/spreadsheets/d/1hznTOKg-8MLcYrt0sW-Chy674JeosjSJyJo8_WbS-zE/edit#gid=790164004"

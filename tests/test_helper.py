@@ -26,7 +26,7 @@ class TestRoles:
 
     def test_canGetAllSnrSpecialists(self):
         ls = SnrSpecialist().all_members
-        assert len(ls) == 11
+        assert len(ls) == 12
 
     def test_canGetAllJnrSpecialists(self):
         ls = JnrSpecialist().all_members
