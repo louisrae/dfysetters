@@ -49,7 +49,7 @@ def get_postgre_details(database):
     password = os.getenv("POSTGRES_PASSWORD")
     uri = f"postgresql://{username}:{password}@localhost:5432/{database}"
 
-    return uri
+    return uri, password, username
 
 
 def get_mondays(date_start, date_end):

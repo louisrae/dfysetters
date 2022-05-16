@@ -90,7 +90,7 @@ class CreateDailyKPIsQueries:
         return f"CREATE VIEW {view_name} AS " + select + from_order_by
 
     def get_client_list(self):
-        db_uri = get_postgre_details("tracking")
+        db_uri, passowrd, username = get_postgre_details("tracking")
         engine = create_engine(db_uri)
         query = "SELECT tablename FROM pg_catalog.pg_tables where schemaname = 'public'"
         df = pd.read_sql_query(query, engine)
@@ -121,9 +121,10 @@ class CreateDailyKPIsQueries:
 
 class GoogleSheetToDatabase:
     def __init__(self, worksheet_name, psql_password) -> None:
+        uri, password, username = get_postgre_details("tracking")
         self.worksheet_name = worksheet_name
         self.conn = pg2.connect(
-            database="tracking", user="postgres", password=psql_password
+            database="tracking", user="postgres", password=password
         )
         self.gc = gspread.oauth()
 
@@ -170,7 +171,7 @@ class GoogleSheetToDatabase:
 
 class DatabaseToGoogleSheet:
     def __init__(self, client, db_name) -> None:
-        uri = get_postgre_details(db_name)
+        uri, password, username = get_postgre_details(db_name)
         self.client = client
         self.engine = create_engine(uri)
 
@@ -296,7 +297,7 @@ class FormatSheet:
 
     def borders(self):
         df = pd.DataFrame(self.sheet.get_all_records())
-        mondays = get_mondays()
+        mondays = get_mondays("2021-01-04", "2022-12-26")
         dates_in_sheet = set(df["Date"].values)
         common = list(set(dates_in_sheet).intersection(mondays))
 

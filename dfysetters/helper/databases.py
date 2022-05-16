@@ -9,7 +9,7 @@ import os
 
 class Databases:
     def __init__(self, table_name):
-        uri = get_postgre_details("general")
+        uri, password, username = get_postgre_details("general")
         self.engine = create_engine(uri)
         self.table_name = table_name
 
