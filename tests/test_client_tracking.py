@@ -35,7 +35,7 @@ class TestSalesData:
         )
 
         assert o["Percentage"].sum() == 0.99
-        assert o["SS Outcome"].sum() == 492
+        assert o["SS Outcome"].sum() == 493
 
 
 class TestScheduleOnce:

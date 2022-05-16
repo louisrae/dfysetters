@@ -2,17 +2,16 @@ from constants import *
 from sqlalchemy import create_engine
 import pandas as pd
 import psycopg2 as pg2
+from common import get_postgre_details
+from dotenv import load_dotenv
+import os
 
 
 class Databases:
     def __init__(self, table_name):
-        self.engine = create_engine(DATABASE_URI)
+        uri = get_postgre_details("general")
+        self.engine = create_engine(uri)
         self.table_name = table_name
-        self.conn = pg2.connect(
-            database=POSTGRES_DATABASE,
-            user=POSTGRES_USERNAME,
-            password=POSTGRES_PASSWORD,
-        )
 
     def read_dataframe_of_roles(self):
         """Uses postgres to pull through all members in the team database
@@ -74,7 +73,14 @@ class Databases:
         Args:
             query (str): sql string with desired query, usually an INSERT INTO
         """
+        load_dotenv()
 
-        self.conn.cursor().execute(query)
-        self.conn.commit()
+        conn = pg2.connect(
+            database="general",
+            user=os.getenv("POSTGRES_USERNAME"),
+            password=os.getenv("POSTGRES_PASSWORD"),
+        )
+
+        conn.cursor().execute(query)
+        conn.commit()
         print("Person Added")

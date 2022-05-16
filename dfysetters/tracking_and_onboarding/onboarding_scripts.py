@@ -22,8 +22,6 @@ class GoogleSetup:
         name = self.row_of_df["full_name"][0]
         start = self.row_of_df["start_date"][0] + timedelta(14)
         end = start + timedelta(1)
-        event = Event(f"End of trial for {name}", start=start, end=end)
-        self.calendar.add_event(event)
 
         return f"{name} added to calendar for {start}"
 

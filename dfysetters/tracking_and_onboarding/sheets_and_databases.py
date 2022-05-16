@@ -1,5 +1,6 @@
 import src_path
 from helper.constants import *
+from helper.common import get_postgre_details, get_mondays
 import os
 import glob
 import gspread
@@ -89,7 +90,8 @@ class CreateDailyKPIsQueries:
         return f"CREATE VIEW {view_name} AS " + select + from_order_by
 
     def get_client_list(self):
-        engine = create_engine(TRACKING_URI)
+        db_uri = get_postgre_details("tracking")
+        engine = create_engine(db_uri)
         query = "SELECT tablename FROM pg_catalog.pg_tables where schemaname = 'public'"
         df = pd.read_sql_query(query, engine)
         client_list = list(df["tablename"].values)
@@ -168,10 +170,9 @@ class GoogleSheetToDatabase:
 
 class DatabaseToGoogleSheet:
     def __init__(self, client, db_name) -> None:
+        uri = get_postgre_details(db_name)
         self.client = client
-        self.engine = create_engine(
-            f"postgresql://postgres:{POSTGRES_PASSWORD}@localhost:5432/{db_name}"
-        )
+        self.engine = create_engine(uri)
 
     def create_df_from_database(self):
         myQuery = f"SELECT * FROM {self.client}_view"
@@ -295,9 +296,9 @@ class FormatSheet:
 
     def borders(self):
         df = pd.DataFrame(self.sheet.get_all_records())
-
+        mondays = get_mondays()
         dates_in_sheet = set(df["Date"].values)
-        common = list(set(dates_in_sheet).intersection(MONDAYS))
+        common = list(set(dates_in_sheet).intersection(mondays))
 
         for i in common:
             default_row = df.index[df["Date"] == i].tolist()[0]

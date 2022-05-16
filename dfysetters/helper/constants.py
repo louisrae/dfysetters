@@ -1,9 +1,3 @@
-### Databases
-DATABASE_URI = "postgresql://postgres:qweasdzxcQ101@localhost:5432/general"
-POSTGRES_DATABASE = "general"
-POSTGRES_USERNAME = "postgres"
-POSTGRES_PASSWORD = "qweasdzxcQ101"
-
 ### Other
 SPECIALIST_NAME = "Tylee Evans Groll"
 SCHEDULE_ONCE_HEADERS = {
@@ -19,6 +13,9 @@ DAILY_KPIS_URL = "https://docs.google.com/spreadsheets/d/18AgIMFyPCOxHYQXRYJowih
 MESSAGE_DATA_WORKBOOK = "https://docs.google.com/spreadsheets/d/1ilUCdcEP-TDUMrC8Alwp2x3Jq2LYfOzINFfF2MTY91k/edit#gid=1232583697"
 LEVEL_10_SHEET_URL = "https://docs.google.com/spreadsheets/d/1Y7cQYW1MJ1HstJVJEADVqKgbI-bOMyv74159jOJQtc4/edit#gid=1480274768"
 APPOINTMENTS_SET_URL = "https://docs.google.com/spreadsheets/d/191VOLxOdD-yDSUa4_qeHiDg2HoZ7cu0Ai3bSN9UkPQw/edit#gid=1189654778"
+NEW_DAILY_KPIS_URL = "https://docs.google.com/spreadsheets/d/1DxaeFkk6A56X-DOoCKQWdYrBk4jOoNpX4nDsR5OXrc0/edit#gid=0"
+EXPORTS_URL = "https://docs.google.com/spreadsheets/d/1Gp2o7KUmWMcd7zJTLreecyvFTMRQnIzJ7vekrGGRcJ8/edit#gid=771905595"
+TOTALS_TRACKER_URL = "https://docs.google.com/spreadsheets/d/1V5F60V0QVR5EG2IRmRAqP9XhDnmiuvuXjaqQh_NveHI/edit#gid=0"
 
 
 ### Slack Channels
@@ -308,128 +305,5 @@ FB_PAGE_TITLES = "AB1:AI1"
 OUTBOUND_DIALS_TITLES = "AJ1:AT1"
 INBOUND_TRIAGE_TITLES = "AU1:AY1"
 
-
-MONDAYS = [
-    "2021-01-04",
-    "2021-01-11",
-    "2021-01-18",
-    "2021-01-25",
-    "2021-02-01",
-    "2021-02-08",
-    "2021-02-15",
-    "2021-02-22",
-    "2021-03-01",
-    "2021-03-08",
-    "2021-03-15",
-    "2021-03-22",
-    "2021-03-29",
-    "2021-04-05",
-    "2021-04-12",
-    "2021-04-19",
-    "2021-04-26",
-    "2021-05-03",
-    "2021-05-10",
-    "2021-05-17",
-    "2021-05-24",
-    "2021-05-31",
-    "2021-06-07",
-    "2021-06-14",
-    "2021-06-21",
-    "2021-06-28",
-    "2021-07-05",
-    "2021-07-12",
-    "2021-07-19",
-    "2021-07-26",
-    "2021-08-02",
-    "2021-08-09",
-    "2021-08-16",
-    "2021-08-23",
-    "2021-08-30",
-    "2021-09-06",
-    "2021-09-13",
-    "2021-09-20",
-    "2021-09-27",
-    "2021-10-04",
-    "2021-10-11",
-    "2021-10-18",
-    "2021-10-25",
-    "2021-11-01",
-    "2021-11-08",
-    "2021-11-15",
-    "2021-11-22",
-    "2021-11-29",
-    "2021-12-06",
-    "2021-12-13",
-    "2021-12-20",
-    "2021-12-27",
-    "2022-01-03",
-    "2022-01-10",
-    "2022-01-17",
-    "2022-01-24",
-    "2022-01-31",
-    "2022-02-07",
-    "2022-02-14",
-    "2022-02-21",
-    "2022-02-28",
-    "2022-03-07",
-    "2022-03-14",
-    "2022-03-21",
-    "2022-03-28",
-    "2022-04-04",
-    "2022-04-11",
-    "2022-04-18",
-    "2022-04-25",
-    "2022-05-02",
-    "2022-05-09",
-    "2022-05-16",
-    "2022-05-23",
-    "2022-05-30",
-    "2022-06-06",
-    "2022-06-13",
-    "2022-06-20",
-    "2022-06-27",
-    "2022-07-04",
-    "2022-07-11",
-    "2022-07-18",
-    "2022-07-25",
-    "2022-08-01",
-    "2022-08-08",
-    "2022-08-15",
-    "2022-08-22",
-    "2022-08-29",
-    "2022-09-05",
-    "2022-09-12",
-    "2022-09-19",
-    "2022-09-26",
-    "2022-10-03",
-    "2022-10-10",
-    "2022-10-17",
-    "2022-10-24",
-    "2022-10-31",
-    "2022-11-07",
-    "2022-11-14",
-    "2022-11-21",
-    "2022-11-28",
-    "2022-12-05",
-    "2022-12-12",
-    "2022-12-19",
-    "2022-12-26",
-]
-
 ### Databases
-POSTGRES_PASSWORD = input("What is the password for postgres: ")
-DATABASE_URI = (
-    f"postgresql://postgres:{POSTGRES_PASSWORD}@localhost:5432/general"
-)
-
-TRACKING_URI = (
-    f"postgresql://postgres:{POSTGRES_PASSWORD}@localhost:5432/tracking"
-)
-
 PATH_TO_DATABASE_FILE = "/Library/PostgreSQL/14/bin/Database/"
-
-
-### URLS
-NEW_DAILY_KPIS_URL = "https://docs.google.com/spreadsheets/d/1DxaeFkk6A56X-DOoCKQWdYrBk4jOoNpX4nDsR5OXrc0/edit#gid=0"
-EXPORTS_URL = "https://docs.google.com/spreadsheets/d/1Gp2o7KUmWMcd7zJTLreecyvFTMRQnIzJ7vekrGGRcJ8/edit#gid=771905595"
-TOTALS_TRACKER_URL = "https://docs.google.com/spreadsheets/d/1V5F60V0QVR5EG2IRmRAqP9XhDnmiuvuXjaqQh_NveHI/edit#gid=0"

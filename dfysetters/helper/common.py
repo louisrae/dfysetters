@@ -1,6 +1,10 @@
 """This module houses common methods used across the codebase"""
 from datetime import timedelta
+from matplotlib import use
 import pandas as pd
+import datetime
+from dotenv import load_dotenv
+import os
 
 
 def change_date_column_in_df_to_datetime(sheet):
@@ -37,3 +41,25 @@ def get_day_list(start_date, end_date):
         daylist.append(day.strftime("%Y-%m-%d"))
 
     return daylist
+
+
+def get_postgre_details(database):
+    load_dotenv()
+    username = os.getenv("POSTGRES_USERNAME")
+    password = os.getenv("POSTGRES_PASSWORD")
+    uri = f"postgresql://{username}:{password}@localhost:5432/{database}"
+
+    return uri
+
+
+def get_mondays(date_start, date_end):
+    date_start = datetime.datetime.strptime(date_start, "%Y-%m-%d")
+    date_end = datetime.datetime.strptime(date_end, "%Y-%m-%d")
+
+    dates = []
+    while date_start <= date_end:
+        if date_start.weekday() == 0:  # 0 == Monday
+            dates.append(date_start.strftime("%Y-%m-%d"))
+        date_start += datetime.timedelta(days=1)
+
+    return dates

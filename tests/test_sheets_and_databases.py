@@ -15,7 +15,7 @@ def test_create_queries(daily_kpis):
     full, percentage = daily_kpis.get_full_create_and_add_query()
 
     assert (
-        "REATE TABLE tracking (date DATE PRIMARY KEY,fb_group_reach_outs"
+        "CREATE TABLE tracking (date DATE PRIMARY KEY,fb_group_reach_outs"
         in full
     )
     assert (
@@ -40,7 +40,7 @@ def test_totals_query(daily_kpis):
 
     query = daily_kpis.get_totals_query()
     assert (
-        "CREATE TABLE totals.fb_group_tc_booked AS SELECT the_flipstress_raw.date"
+        "CREATE TABLE totals.fb_group_tc_booked AS SELECT oneself_limited_raw.date"
         in query
     )
 
@@ -49,7 +49,7 @@ def test_df_from_database_creation():
 
     dbtosheet = DatabaseToGoogleSheet("the_flipstress", "tracking")
     df = dbtosheet.create_df_from_database()
-    assert df["total_ss_booked"].sum() == 360.0
+    assert df["total_ss_booked"].sum() == 366.0
 
 
 def test_moving_table():

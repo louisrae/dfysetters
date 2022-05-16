@@ -8,3 +8,4 @@ dfy_venv
 dist
 build
 dfysetters.egg-info
+*.env
