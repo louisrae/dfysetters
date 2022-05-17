@@ -17,6 +17,7 @@ NEW_DAILY_KPIS_URL = "https://docs.google.com/spreadsheets/d/1DxaeFkk6A56X-DOoCK
 EXPORTS_URL = "https://docs.google.com/spreadsheets/d/1Gp2o7KUmWMcd7zJTLreecyvFTMRQnIzJ7vekrGGRcJ8/edit#gid=771905595"
 TOTALS_TRACKER_URL = "https://docs.google.com/spreadsheets/d/1V5F60V0QVR5EG2IRmRAqP9XhDnmiuvuXjaqQh_NveHI/edit#gid=0"
 
+PATH_TO_DATABASE_FILE = "/Library/PostgreSQL/14/bin/Database/"
 
 ### Slack Channels
 SETTERS_TEAM_ID = "C0199AXJC80"
@@ -48,8 +49,8 @@ CLOSE_METRICS = [
     "sms.received.all.count",
     "leads.contacted.all.count",
 ]
-### COLUMN NAMES
 
+### COLUMN NAMES
 PERCENTAGE_COLUMNS = {
     "fb_group_columns": [
         {
@@ -304,6 +305,3 @@ EMAIL_TITLES = "T1:AA1"
 FB_PAGE_TITLES = "AB1:AI1"
 OUTBOUND_DIALS_TITLES = "AJ1:AT1"
 INBOUND_TRIAGE_TITLES = "AU1:AY1"
-
-### Databases
-PATH_TO_DATABASE_FILE = "/Library/PostgreSQL/14/bin/Database/"

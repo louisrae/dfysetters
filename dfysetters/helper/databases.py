@@ -2,14 +2,14 @@ from constants import *
 from sqlalchemy import create_engine
 import pandas as pd
 import psycopg2 as pg2
-from common import get_postgre_details
+from common import get_postgre_uri
 from dotenv import load_dotenv
 import os
 
 
 class Databases:
     def __init__(self, table_name):
-        uri, password, username = get_postgre_details("general")
+        uri = get_postgre_uri("general")
         self.engine = create_engine(uri)
         self.table_name = table_name
 

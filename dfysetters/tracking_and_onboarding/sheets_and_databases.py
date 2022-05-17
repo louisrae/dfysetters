@@ -1,6 +1,6 @@
 import src_path
 from helper.constants import *
-from helper.common import get_postgre_details, get_mondays
+from helper.common import get_postgre_uri, get_mondays
 import os
 import glob
 import gspread
@@ -8,6 +8,11 @@ import pandas as pd
 import psycopg2 as pg2
 from sqlalchemy import create_engine
 from gspread_formatting import *
+from dotenv import load_dotenv
+
+load_dotenv(
+    "/Users/louisrae/Documents/code/published/dfysetters/dfysetters/helper"
+)
 
 
 class CreateDailyKPIsQueries:
@@ -90,8 +95,8 @@ class CreateDailyKPIsQueries:
         return f"CREATE VIEW {view_name} AS " + select + from_order_by
 
     def get_client_list(self):
-        db_uri, passowrd, username = get_postgre_details("tracking")
-        engine = create_engine(db_uri)
+        uri = get_postgre_uri("tracking")
+        engine = create_engine(uri)
         query = "SELECT tablename FROM pg_catalog.pg_tables where schemaname = 'public'"
         df = pd.read_sql_query(query, engine)
         client_list = list(df["tablename"].values)
@@ -120,11 +125,12 @@ class CreateDailyKPIsQueries:
 
 
 class GoogleSheetToDatabase:
-    def __init__(self, worksheet_name, psql_password) -> None:
-        uri, password, username = get_postgre_details("tracking")
+    def __init__(self, worksheet_name) -> None:
         self.worksheet_name = worksheet_name
         self.conn = pg2.connect(
-            database="tracking", user="postgres", password=password
+            database="tracking",
+            user="postgres",
+            password=os.getenv("POSTGRES_PASSWORD"),
         )
         self.gc = gspread.oauth()
 
@@ -170,8 +176,8 @@ class GoogleSheetToDatabase:
 
 
 class DatabaseToGoogleSheet:
-    def __init__(self, client, db_name) -> None:
-        uri, password, username = get_postgre_details(db_name)
+    def __init__(self, client) -> None:
+        uri = get_postgre_uri("tracking")
         self.client = client
         self.engine = create_engine(uri)
 

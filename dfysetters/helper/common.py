@@ -43,13 +43,13 @@ def get_day_list(start_date, end_date):
     return daylist
 
 
-def get_postgre_details(database):
+def get_postgre_uri(database):
     load_dotenv()
     username = os.getenv("POSTGRES_USERNAME")
     password = os.getenv("POSTGRES_PASSWORD")
     uri = f"postgresql://{username}:{password}@localhost:5432/{database}"
 
-    return uri, password, username
+    return uri
 
 
 def get_mondays(date_start, date_end):

@@ -40,14 +40,14 @@ def test_totals_query(daily_kpis):
 
     query = daily_kpis.get_totals_query()
     assert (
-        "CREATE TABLE totals.fb_group_tc_booked AS SELECT oneself_limited_raw.date"
+        "CREATE TABLE totals.fb_group_tc_booked AS SELECT big_rig_freight_services_raw.date"
         in query
     )
 
 
 def test_df_from_database_creation():
 
-    dbtosheet = DatabaseToGoogleSheet("the_flipstress", "tracking")
+    dbtosheet = DatabaseToGoogleSheet("the_flipstress")
     df = dbtosheet.create_df_from_database()
     assert df["total_ss_booked"].sum() == 366.0
 
