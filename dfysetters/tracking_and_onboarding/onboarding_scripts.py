@@ -61,7 +61,7 @@ class GoogleSetup:
 
         return meetings
 
-    def email_setup(self):
+    def email_setup(self, slack_link):
         """Generates the email to be sent
 
         Args:
@@ -73,8 +73,6 @@ class GoogleSetup:
         """
 
         email_address = self.row_of_df["company_email"][0]
-
-        slack_link = input("What is the manual invite link you generated? ")
 
         subject = "Congratulations!"
 

@@ -7,14 +7,29 @@ from slack_sdk import WebClient
 from helper.credentials.apis import *
 
 
+invite = "https://join.slack.com/t/dfysetters/shared_invite/zt-17uddj711-JK7Nc3RktaB1hz0E4EPBWw"
+
+full_name = "Tylee Groll"
+role = "Pod Lead"
+email = "tylee@settersandspecialists.com"
+pay = "100"
+start_date = "2022-01-01"
+pod = "Purple"
+personal_email = "tyleeann07@gmail.com"
+
+
 class TestOnboarding:
     client = WebClient(token=SLACK_API)
 
-    name_from_db = Databases("teamtest").get_row_of_database_based_on_name()
+    name_from_db = Databases("teamtest").get_row_of_database_based_on_name(
+        email
+    )
     cal = GoogleCalendar()
 
     def test_queryIsCorrect(self):
-        query = Databases("team").get_insert_into_query()
+        query = Databases("team").get_insert_into_query(
+            full_name, role, email, pay, start_date, pod, personal_email
+        )
         assert "INSERT INTO" in query and "VALUES" in query
 
     def test_getCorrectMeetingsBasedOnRoleAndPod(self):
@@ -35,5 +50,5 @@ class TestOnboarding:
 
     def test_correctEmailBeingSent(self):
         email_head = "Tylee Groll"
-        email = GoogleSetup(self.name_from_db, self.cal).email_setup()
+        email = GoogleSetup(self.name_from_db, self.cal).email_setup(invite)
         assert email_head in email[2]

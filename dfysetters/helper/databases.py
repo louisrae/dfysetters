@@ -24,40 +24,25 @@ class Databases:
         df = pd.read_sql_query(myQuery, self.engine)
         return df
 
-    def get_row_of_database_based_on_name(self):
+    def get_row_of_database_based_on_name(self, email_to_search):
         """Gets all of the details from the team database for one employee
 
         Returns:
             dataframe: One row dataframe with the variables of a given employee
         """
-        email = input(
-            "What is the work_email of the person you are searching for? "
-        )
-        myQuery = (
-            f"SELECT * FROM {self.table_name} WHERE company_email = '{email}'"
-        )
+        myQuery = f"SELECT * FROM {self.table_name} WHERE company_email = '{email_to_search}'"
         row_of_df = pd.read_sql_query(myQuery, self.engine)
 
         return row_of_df
 
-    def get_insert_into_query(self):
+    def get_insert_into_query(
+        self, full_name, role, email, pay, start_date, pod, personal_email
+    ):
         """Takes input from the user and puts it into a SQL query
 
         Returns:
             str: SQL query string
         """
-
-        full_name = input(
-            "What is the full name of the person you want to add? "
-        )
-        role = input("What role is this person in? ")
-        email = input("What is this person's email address? ")
-        pay = input("How much is this person getting paid per client? (USD): ")
-        start_date = input(
-            "What is the start date of the person you want to add? (YYYY-MM-DD) "
-        )
-        pod = input("What pod is this person in? ")
-        personal_email = input("What is this person's personal email address? ")
 
         query = f"""
         INSERT INTO team(full_name,company_role,company_email,pay_per_client,

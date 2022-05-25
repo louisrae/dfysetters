@@ -47,7 +47,7 @@ def test_totals_query(daily_kpis):
 
 def test_df_from_database_creation():
 
-    dbtosheet = DatabaseToGoogleSheet("the_flipstress")
+    dbtosheet = DatabaseToGoogleSheet("guest_nav")
     df = dbtosheet.create_df_from_database()
     assert df["total_ss_booked"].sum() == 371.0
 

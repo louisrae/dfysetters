@@ -34,8 +34,8 @@ class TestSalesData:
             vc
         )
 
-        assert o["Percentage"].sum() == 0.99
-        assert o["SS Outcome"].sum() == 494
+        assert o["Percentage"].sum() == 1.0
+        assert o["SS Outcome"].sum() == 501
 
 
 class TestScheduleOnce:
