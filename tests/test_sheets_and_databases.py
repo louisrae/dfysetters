@@ -49,7 +49,7 @@ def test_df_from_database_creation():
 
     dbtosheet = DatabaseToGoogleSheet("the_flipstress")
     df = dbtosheet.create_df_from_database()
-    assert df["total_ss_booked"].sum() == 366.0
+    assert df["total_ss_booked"].sum() == 371.0
 
 
 def test_moving_table():

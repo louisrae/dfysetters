@@ -11,7 +11,7 @@ from gspread_formatting import *
 from dotenv import load_dotenv
 
 load_dotenv(
-    "/Users/louisrae/Documents/code/published/dfysetters/dfysetters/helper"
+    "/Users/louisrae/Documents/code/published/dfysetters/dfysetters/helper/.env"
 )
 
 
@@ -219,7 +219,10 @@ class DatabaseToGoogleSheet:
         client_list = [i[:-4] for i in dbs if "raw" in i]
 
         for client in client_list:
-            DatabaseToGoogleSheet(client, "tracking").update_sheet_with_df()
+            try:
+                DatabaseToGoogleSheet(client).update_sheet_with_df()
+            except:
+                print("Could not complete" + client)
 
 
 class FormatSheet:

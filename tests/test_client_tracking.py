@@ -35,7 +35,7 @@ class TestSalesData:
         )
 
         assert o["Percentage"].sum() == 0.99
-        assert o["SS Outcome"].sum() == 493
+        assert o["SS Outcome"].sum() == 494
 
 
 class TestScheduleOnce:
@@ -103,7 +103,7 @@ class TestWeeklyTotals:
     def test_allClientsAreInDataframe(self):
         days = get_day_list(self.start, self.end)
         ss = SSBTotals().getTotalsDataframe(self.gc, days)
-        assert sum(ss.index) == 406
+        assert sum(ss.index) == 325
 
 
 class TestClose:
@@ -121,7 +121,7 @@ class TestClose:
         resp = Close(self.api).get_total_metrics_from_close(
             self.start, self.end, CLOSE_METRICS
         )
-        assert resp["Count"].sum() == 1831
+        assert resp["Count"].sum() == 1830
 
     def test_getAllSSBookingsForDay(self):
         df = pd.DataFrame(self.sets_sheet.get_all_records())

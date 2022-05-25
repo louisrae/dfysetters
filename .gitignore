@@ -9,3 +9,4 @@ dist
 build
 dfysetters.egg-info
 *.env
+*.hypothesis
