@@ -1,10 +1,12 @@
 """This module houses common methods used across the codebase"""
+import os
 from datetime import timedelta
-from matplotlib import use
 import pandas as pd
 import datetime
 from dotenv import load_dotenv
-import os
+from constants import *
+from sqlalchemy import create_engine
+import psycopg2 as pg2
 
 
 def change_date_column_in_df_to_datetime(sheet):
@@ -43,15 +45,6 @@ def get_day_list(start_date, end_date):
     return daylist
 
 
-def get_postgre_uri(database):
-    load_dotenv()
-    username = os.getenv("POSTGRES_USERNAME")
-    password = os.getenv("POSTGRES_PASSWORD")
-    uri = f"postgresql://{username}:{password}@localhost:5432/{database}"
-
-    return uri
-
-
 def get_mondays(date_start, date_end):
     date_start = datetime.datetime.strptime(date_start, "%Y-%m-%d")
     date_end = datetime.datetime.strptime(date_end, "%Y-%m-%d")
@@ -63,3 +56,75 @@ def get_mondays(date_start, date_end):
         date_start += datetime.timedelta(days=1)
 
     return dates
+
+
+def get_postgre_uri(database):
+    load_dotenv("/Users/louisrae/Documents/code/published/dfysetters/.env")
+    username = os.getenv("POSTGRES_USERNAME")
+    password = os.getenv("POSTGRES_PASSWORD")
+    uri = f"postgresql://{username}:{password}@localhost:5432/{database}"
+
+    return uri
+
+
+class Databases:
+    def __init__(self, table_name):
+        self.engine = create_engine(get_postgre_uri("general"))
+        self.table_name = table_name
+
+    def read_dataframe_of_roles(self):
+        """Uses postgres to pull through all members in the team database
+
+        Returns:
+            dataframe: Returns two columns, name and role for all members in team
+        """
+
+        myQuery = f"SELECT full_name,company_role FROM {self.table_name}"
+        df = pd.read_sql_query(myQuery, self.engine)
+        return df
+
+    def get_row_of_database_based_on_name(self, email_to_search):
+        """Gets all of the details from the team database for one employee
+
+        Returns:
+            dataframe: One row dataframe with the variables of a given employee
+        """
+        myQuery = f"SELECT * FROM {self.table_name} WHERE company_email = '{email_to_search}'"
+        row_of_df = pd.read_sql_query(myQuery, self.engine)
+
+        return row_of_df
+
+    def get_insert_into_query(
+        self, full_name, role, email, pay, start_date, pod, personal_email
+    ):
+        """Takes input from the user and puts it into a SQL query
+
+        Returns:
+            str: SQL query string
+        """
+
+        query = f"""
+        INSERT INTO team(full_name,company_role,company_email,pay_per_client,
+        start_date,active,pod,personal_email) VALUES('{full_name}', '{role}','{email}','{pay}',
+        '{start_date}',
+        '1','{pod}','{personal_email}') """
+
+        return query
+
+    def add_member_to_database(self, query):
+        """Uses psycopg2 to push a given query to a selected database
+
+        Args:
+            query (str): sql string with desired query, usually an INSERT INTO
+        """
+        load_dotenv()
+
+        conn = pg2.connect(
+            database="general",
+            user=os.getenv("POSTGRES_USERNAME"),
+            password=os.getenv("POSTGRES_PASSWORD"),
+        )
+
+        conn.cursor().execute(query)
+        conn.commit()
+        print("Person Added")

@@ -1,10 +1,13 @@
+from yaml import load
 import src_path
-from helper.databases import Databases
+from helper.common import Databases
 from tracking_and_onboarding.onboarding_scripts import Slack
 from tracking_and_onboarding.onboarding_scripts import GoogleSetup
 from gcsa.google_calendar import GoogleCalendar
 from slack_sdk import WebClient
-from helper.credentials.apis import *
+
+from dotenv import load_dotenv
+import os
 
 
 invite = "https://join.slack.com/t/dfysetters/shared_invite/zt-17uddj711-JK7Nc3RktaB1hz0E4EPBWw"
@@ -19,7 +22,8 @@ personal_email = "tyleeann07@gmail.com"
 
 
 class TestOnboarding:
-    client = WebClient(token=SLACK_API)
+    load_dotenv("/Users/louisrae/Documents/code/published/dfysetters/.env")
+    client = WebClient(token=os.getenv("SLACK_API"))
 
     name_from_db = Databases("teamtest").get_row_of_database_based_on_name(
         email

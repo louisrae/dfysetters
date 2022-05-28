@@ -1,12 +1,5 @@
 ### Other
 SPECIALIST_NAME = "Tylee Evans Groll"
-SCHEDULE_ONCE_HEADERS = {
-    "Accept": "application/json",
-    "API-Key": "d7459f78d474f09276b4d708d2f2a161",
-}
-SCHEDULE_ONCE_URL = (
-    "https://api.oncehub.com/v2/bookings?expand=booking_page&limit=100"
-)
 
 ### Google Sheets
 DAILY_KPIS_URL = "https://docs.google.com/spreadsheets/d/18AgIMFyPCOxHYQXRYJowihJd_i2kRMB9pzB5jdA3ZVc/edit#gid=1070219116"
@@ -33,22 +26,6 @@ SCRUMTEAM_ID = "C01K8EK5VJ4"
 ### Credentials
 GCAL_EMAIL_LOUISRAE = "louisrae@settersandspecialists.com"
 
-
-### Checking Sales Data
-MONTH_NUMBER_WEEK_AGO = 1
-DAY_NUMBER_WEEK_AGO = 1
-
-### Checking Close
-APP_SET_SHEET_URL = "https://docs.google.com/spreadsheets/d/1hznTOKg-8MLcYrt0sW-Chy674JeosjSJyJo8_WbS-zE/edit#gid=790164004"
-CLOSE_METRICS = [
-    "calls.outbound.all.count",
-    "sms.sent.all.count",
-    "emails.sent.all.count",
-    "emails.opened.all.count",
-    "emails.sent.manual_with_reply.count",
-    "sms.received.all.count",
-    "leads.contacted.all.count",
-]
 
 ### COLUMN NAMES
 PERCENTAGE_COLUMNS = {

@@ -3,7 +3,6 @@ new team members to the relevant meetings"""
 
 import src_path
 from datetime import timedelta
-from gcsa.event import Event
 from helper.constants import *
 
 

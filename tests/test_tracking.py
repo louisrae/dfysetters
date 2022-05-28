@@ -1,9 +1,19 @@
 import src_path
 import gspread
 import pytest
-from tracking_and_onboarding.team_tracking import *
+from tracking_and_onboarding.tracking import *
 from helper.constants import *
 from helper.roles import *
+import src_path
+import gspread
+from datetime import date
+import gspread
+from helper.constants import *
+from helper.common import *
+from tracking_and_onboarding.tracking import *
+
+gc = gspread.oauth()
+daily_kpis = gc.open_by_url(DAILY_KPIS_URL)
 
 
 class TestUnansweredMessages:
@@ -45,28 +55,28 @@ class TestAveragePerConversation:
         assert avg == 6.62
 
 
-class TestLeaderboard:
+class TestWeeklyTotals:
 
-    role_list = None
+    start = None
+    end = None
+    gc = None
 
     def setup(cls):
-        Roles().register_all_members()
-        cls.role_list = [PodLead(), SnrSpecialist(), JnrSpecialist(), Setter()]
+        cls.start = date(2022, 1, 1)
+        cls.end = date(2022, 1, 2)
+        cls.gc = gspread.oauth()
 
-    @pytest.fixture()
-    def leaderboard(self):
-        gc = gspread.oauth()
-        level_10_sheet = gc.open_by_url(LEVEL_10_SHEET_URL).sheet1
-        leaderboard = Leaderboard(level_10_sheet)
-        return leaderboard
+    def test_canWTDListOfDaysIsListAndContainsDates(self):
+        days = get_day_list(self.start, self.end)
+        first_date = days[0]
+        assert isinstance(days, list) and "2022" in first_date
 
-    def test_getWeekTotalromLevel10(self, leaderboard):
-        data = leaderboard.getWeekTotalFromLevel10()
-        assert "Tylee Groll SS" in data.index.values
+    def test_canMTDListOfDaysIsListAndContainsDates(self):
+        days = get_day_list(self.start, self.end)
+        first_date = days[0]
+        assert isinstance(days, list) and "2022" in first_date
 
-    def test_canGetAllTeamDataIntoDataframe(self, leaderboard):
-        data = leaderboard.getWeekTotalFromLevel10()
-        todo = leaderboard.getSortedTCandSSNumbersForTeamMembers(
-            self.role_list, data
-        )
-        assert 402 == todo.sum().sum()
+    def test_allClientsAreInDataframe(self):
+        days = get_day_list(self.start, self.end)
+        ss = SSBTotals().getTotalsDataframe(daily_kpis, days)
+        assert sum(ss.index) == 325
