@@ -1,5 +1,3 @@
-from yaml import load
-import src_path
 from helper.common import Databases
 from tracking_and_onboarding.onboarding_scripts import Slack
 from tracking_and_onboarding.onboarding_scripts import GoogleSetup

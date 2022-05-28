@@ -2,7 +2,7 @@
 (or Google Sheet) with  Facebook message data, and pull the necessary metrics 
 from it """
 
-import src_path
+
 import pandas as pd
 import numpy as np
 from statistics import mean

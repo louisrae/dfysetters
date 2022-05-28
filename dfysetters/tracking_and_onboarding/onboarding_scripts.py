@@ -1,7 +1,6 @@
 """This module works with Google Calendar to set follow up events and invite 
 new team members to the relevant meetings"""
 
-import src_path
 from datetime import timedelta
 from helper.constants import *
 

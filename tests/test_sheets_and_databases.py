@@ -1,5 +1,4 @@
 import pytest
-import src_path
 from tracking_and_onboarding.sheets_and_databases import *
 
 

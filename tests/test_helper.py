@@ -1,8 +1,6 @@
-import src_path
 import datetime
-from helper.common import get_day_list
 from helper.roles import *
-from helper.common import Databases
+from helper.common import *
 
 
 def test_canGetDayList():

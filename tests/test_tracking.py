@@ -1,15 +1,10 @@
-import src_path
 import gspread
 import pytest
-from tracking_and_onboarding.tracking import *
+from datetime import date
+
+from helper.common import *
 from helper.constants import *
 from helper.roles import *
-import src_path
-import gspread
-from datetime import date
-import gspread
-from helper.constants import *
-from helper.common import *
 from tracking_and_onboarding.tracking import *
 
 gc = gspread.oauth()

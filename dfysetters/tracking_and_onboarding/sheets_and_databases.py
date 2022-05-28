@@ -1,4 +1,3 @@
-import src_path
 from helper.constants import *
 from helper.common import get_postgre_uri, get_mondays
 import os
