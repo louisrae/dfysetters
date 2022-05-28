@@ -1,4 +1,5 @@
-from helper.common import Databases
+from tracking_and_onboarding.helper.roles import *
+from tracking_and_onboarding.helper.common import Databases
 from tracking_and_onboarding.onboarding_scripts import Slack
 from tracking_and_onboarding.onboarding_scripts import GoogleSetup
 from gcsa.google_calendar import GoogleCalendar

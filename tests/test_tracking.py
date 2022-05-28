@@ -2,9 +2,10 @@ import gspread
 import pytest
 from datetime import date
 
-from helper.common import *
-from helper.constants import *
-from helper.roles import *
+from tracking_and_onboarding.helper.roles import *
+from tracking_and_onboarding.helper.common import *
+from tracking_and_onboarding.helper.constants import *
+
 from tracking_and_onboarding.tracking import *
 
 gc = gspread.oauth()
