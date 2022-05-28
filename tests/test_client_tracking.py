@@ -12,6 +12,9 @@ from helper.common import *
 from tracking_and_onboarding.client_tracking import *
 from helper.credentials.apis import CLOSE_API
 
+gc = gspread.oauth()
+daily_kpis = gc.open_by_url(DAILY_KPIS_URL)
+
 
 class TestSalesData:
 
@@ -87,7 +90,7 @@ class TestWeeklyTotals:
 
     def setup(cls):
         cls.start = date(2022, 1, 1)
-        cls.end = date(2022, 1, 15)
+        cls.end = date(2022, 1, 2)
         cls.gc = gspread.oauth()
 
     def test_canWTDListOfDaysIsListAndContainsDates(self):
@@ -102,8 +105,8 @@ class TestWeeklyTotals:
 
     def test_allClientsAreInDataframe(self):
         days = get_day_list(self.start, self.end)
-        ss = SSBTotals().getTotalsDataframe(self.gc, days)
-        assert sum(ss.index) == 325
+        ss = SSBTotals().getTotalsDataframe(daily_kpis, days)
+        assert sum(ss.index) == 136
 
 
 class TestClose:
