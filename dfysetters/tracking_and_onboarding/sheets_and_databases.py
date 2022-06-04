@@ -9,9 +9,8 @@ from sqlalchemy import create_engine
 from gspread_formatting import *
 from dotenv import load_dotenv
 
-load_dotenv(
-    "/Users/louisrae/Documents/code/published/dfysetters/dfysetters/helper/.env"
-)
+
+load_dotenv("/Users/louisrae/Documents/code/published/dfysetters/.env")
 
 
 class CreateDailyKPIsQueries:
@@ -177,7 +176,7 @@ class DatabaseToGoogleSheet:
     def __init__(self, client) -> None:
 
         self.client = client
-        self.engine = Databases(None, "tracking").engine
+        self.engine = Databases("team", "tracking").engine
 
     def create_df_from_database(self):
         myQuery = f"SELECT * FROM {self.client}_view"
