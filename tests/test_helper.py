@@ -19,7 +19,7 @@ class TestRoles:
         assert jack.name == "Jack" and jack.role == "Snr Specialist"
 
     def test_canRegisterAllMembers(self):
-        df = Databases("team").read_dataframe_of_roles()
+        df = Databases("team", "general").read_dataframe_of_roles()
         assert len(df.index) == len(Roles.all_team_members_in_company)
 
     def test_canGetAllSnrSpecialists(self):

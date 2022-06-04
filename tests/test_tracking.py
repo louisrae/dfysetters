@@ -71,8 +71,3 @@ class TestWeeklyTotals:
         days = get_day_list(self.start, self.end)
         first_date = days[0]
         assert isinstance(days, list) and "2022" in first_date
-
-    def test_allClientsAreInDataframe(self):
-        days = get_day_list(self.start, self.end)
-        ss = SSBTotals().getTotalsDataframe(daily_kpis, days)
-        assert sum(ss.index) == 325

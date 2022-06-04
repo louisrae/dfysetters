@@ -24,13 +24,13 @@ class TestOnboarding:
     load_dotenv("/Users/louisrae/Documents/code/published/dfysetters/.env")
     client = WebClient(token=os.getenv("SLACK_API"))
 
-    name_from_db = Databases("teamtest").get_row_of_database_based_on_name(
-        email
-    )
+    name_from_db = Databases(
+        "teamtest", "general"
+    ).get_row_of_database_based_on_name(email)
     cal = GoogleCalendar()
 
     def test_queryIsCorrect(self):
-        query = Databases("team").get_insert_into_query(
+        query = Databases("team", "general").get_insert_into_query(
             full_name, role, email, pay, start_date, pod, personal_email
         )
         assert "INSERT INTO" in query and "VALUES" in query

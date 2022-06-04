@@ -1,5 +1,5 @@
 from helper.constants import *
-from helper.common import get_postgre_uri, get_mondays
+from helper.common import get_mondays, Databases
 import os
 import glob
 import gspread
@@ -94,8 +94,7 @@ class CreateDailyKPIsQueries:
         return f"CREATE VIEW {view_name} AS " + select + from_order_by
 
     def get_client_list(self):
-        uri = get_postgre_uri("tracking")
-        engine = create_engine(uri)
+        engine = Databases(None, "tracking").engine
         query = "SELECT tablename FROM pg_catalog.pg_tables where schemaname = 'public'"
         df = pd.read_sql_query(query, engine)
         client_list = list(df["tablename"].values)
@@ -176,9 +175,9 @@ class GoogleSheetToDatabase:
 
 class DatabaseToGoogleSheet:
     def __init__(self, client) -> None:
-        uri = get_postgre_uri("tracking")
+
         self.client = client
-        self.engine = create_engine(uri)
+        self.engine = Databases(None, "tracking").engine
 
     def create_df_from_database(self):
         myQuery = f"SELECT * FROM {self.client}_view"

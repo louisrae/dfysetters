@@ -58,18 +58,15 @@ def get_mondays(date_start, date_end):
     return dates
 
 
-def get_postgre_uri(database):
-    load_dotenv("/Users/louisrae/Documents/code/published/dfysetters/.env")
-    username = os.getenv("POSTGRES_USERNAME")
-    password = os.getenv("POSTGRES_PASSWORD")
-    uri = f"postgresql://{username}:{password}@localhost:5432/{database}"
-
-    return uri
-
-
 class Databases:
-    def __init__(self, table_name):
-        self.engine = create_engine(get_postgre_uri("general"))
+    def __init__(self, table_name, database):
+
+        load_dotenv("/Users/louisrae/Documents/code/published/dfysetters/.env")
+        username = os.getenv("POSTGRES_USERNAME")
+        password = os.getenv("POSTGRES_PASSWORD")
+        uri = f"postgresql://{username}:{password}@localhost:5432/{database}"
+
+        self.engine = create_engine(uri)
         self.table_name = table_name
 
     def read_dataframe_of_roles(self):

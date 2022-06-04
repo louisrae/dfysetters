@@ -66,7 +66,7 @@ class Roles:
         is in database
         """
         for name, role in list(
-            Databases("team").read_dataframe_of_roles().values
+            Databases("team", "general").read_dataframe_of_roles().values
         ):
             person = Person(name, role)
             if role == "Pod Lead":
