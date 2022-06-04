@@ -212,22 +212,3 @@ class SSBTotals:
         totals[sheet.title] = total
 
         return totals
-
-    def getTotalsDataframe(self, kpis_sheet, day_list):
-        """Pulls together all the client SS totals and puts them in dataframe
-
-        Returns:
-            df: Dataframe with total SSB based on Timeframe
-        """
-        totals = dict()
-
-        for sheet in kpis_sheet:
-            try:
-                totals.update(self.getSSForEachDayInDayList(sheet, day_list))
-
-            except Exception as e:
-                pass
-
-        totals_df = pd.DataFrame(totals.items()).sort_values(by=1)
-
-        return totals_df
