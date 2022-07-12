@@ -1,6 +1,6 @@
 import datetime
-from tracking_and_onboarding.helper.roles import *
-from tracking_and_onboarding.helper.common import *
+from roles import *
+from common import *
 
 
 def test_canGetDayList():

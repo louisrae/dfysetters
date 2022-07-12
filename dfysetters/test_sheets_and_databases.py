@@ -1,5 +1,5 @@
 import pytest
-from tracking_and_onboarding.sheets_and_databases import *
+from main import *
 
 
 @pytest.fixture()
@@ -48,7 +48,7 @@ def test_df_from_database_creation():
 
     dbtosheet = DatabaseToGoogleSheet("the_flipstress")
     df = dbtosheet.create_df_from_database()
-    assert df["total_ss_booked"].sum() == 378.0
+    assert df["total_ss_booked"].sum() == 387.0
 
 
 def test_moving_table():

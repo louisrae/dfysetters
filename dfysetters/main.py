@@ -1,5 +1,5 @@
-from helper.constants import *
-from helper.common import get_mondays, Databases
+from constants import *
+from common import get_mondays, Databases, change_date_column_in_df_to_datetime
 import os
 import glob
 import gspread
@@ -339,3 +339,35 @@ def move_table_to_new_schema(old_schema, new_schema, table_to_move):
     delete_old = f"DROP TABLE {old_schema}.{table_to_move} CASCADE"
 
     return move_query, delete_old
+
+
+class SSBTotals:
+    def __init__(self) -> None:
+        """Main class that houses functions to pull data
+
+        Args:
+            start_date (datetime.date): The start date used to pull SS Total
+            end_date (datetime.date): The end date used to pull SS Total
+        """
+
+    @staticmethod
+    def getSSForEachDayInDayList(sheet, day_list):
+        """Gives the amount of SS booked in a given time period
+
+        Args:
+            sheet (gspread.worksheet): Worksheet from a gspread workbook
+            day_list (list): List of datetime.date objects to check
+
+        Returns:
+            int: Returns int of the amount of SS booked in that time period
+        """
+        df = change_date_column_in_df_to_datetime(sheet)
+        totals = dict()
+        list_of_values = list()
+        for day in day_list:
+            list_of_values.append(df[df["Date"] == day]["Total SSB"].values[0])
+
+        total = sum([i for i in list_of_values if i])
+        totals[sheet.title] = total
+
+        return totals
